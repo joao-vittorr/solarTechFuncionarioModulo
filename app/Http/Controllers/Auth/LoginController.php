@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 
-class GoogleAuthController extends Controller
+class LoginController extends Controller
 {
     public function redirectToGoogle()
     {
