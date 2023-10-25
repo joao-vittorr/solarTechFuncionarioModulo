@@ -20,6 +20,16 @@ class UsersTableSeeder extends Seeder
             'cep' => '00000000',
             'sub' => '11',
             'access_level' => 'master',
+            'name' => 'John Wendel',
+            'email' => 'wendel.john@escolar.ifrn.edu.br',
+            'cep' => '00000000',
+            'sub' => '13',
+            'access_level' => 'master',
+            'name' => 'Vitor',
+            'email' => 'ribeiro.alexandre@escolar.ifrn.edu.br',
+            'cep' => '00000000',
+            'sub' => '1234534',
+            'access_level' => 'master',
         ]);
     }
 }

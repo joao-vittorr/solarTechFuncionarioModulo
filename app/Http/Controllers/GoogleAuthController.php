@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Log;
 
 
@@ -15,11 +16,12 @@ class GoogleAuthController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+    
     public function handleGoogleCallback(){
         $user = Socialite::driver('google')->user();
 
         $existingUser = User::where('sub', $user->getId())->first();
-
+        
         if ($existingUser) {
             // Usuário já existe, faça o login do usuário
             Auth::login($existingUser);
@@ -38,7 +40,7 @@ class GoogleAuthController extends Controller
             return redirect('/');
         }
     }
+    
 
-
-
+    
 }
