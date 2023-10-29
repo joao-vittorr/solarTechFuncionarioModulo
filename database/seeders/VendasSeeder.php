@@ -18,14 +18,14 @@ class VendasSeeder extends Seeder
         // Crie algumas vendas de teste
         Venda::create([
             'nomePacote' => 'Pacote Teste 1',
-            'quantidadePlaca' => 5,
+            'quantidadePlacas' => 5,
             'valorFinal' => 100.50,
             'users_id' => $users->id
         ]);
 
         Venda::create([
             'nomePacote' => 'Pacote Teste 2',
-            'quantidadePlaca' => 3,
+            'quantidadePlacas' => 3,
             'valorFinal' => 75.25,
             'users_id' => $users->id
         ]);

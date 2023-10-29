@@ -12,7 +12,7 @@ class CreateVendasTable extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
             $table->string('nomePacote');
-            $table->integer('quantidadePlaca');
+            $table->integer('quantidadePlacas');
             $table->decimal('valorFinal', 10, 2);
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users');
