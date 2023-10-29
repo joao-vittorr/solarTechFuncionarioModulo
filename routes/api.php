@@ -20,6 +20,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/receber-dados', [VendaController::class, 'ReceberDados']);
-
-
-Route::post('/abc', [VendaController::class, 'vendas']);

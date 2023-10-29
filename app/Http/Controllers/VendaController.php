@@ -25,13 +25,14 @@ class VendaController extends Controller
         return response()->json(['message' => 'Compra realizada com sucesso']);
     }
 
-    // public function vendas() //retorna na view as vendas
-    // {
-    //     // Buscar todas as vendas com os dados dos usuários associados
-    //     $dadosVendas = Venda::with('user')->get();
 
-    //     return response()->json(['message' => 'Compra realizada com sucesso']);
-    // }
+    public function vendas() //retorna na view as vendas
+    {
+        // Buscar todas as vendas com os dados dos usuários associados
+        $dadosVendas = Venda::with('user')->get();
+
+        return view('vendas', ['dadosVendas' => $dadosVendas]);
+    }
 
     public function editarVenda(Request $request, $id)
     {
