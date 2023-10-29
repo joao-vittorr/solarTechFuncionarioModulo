@@ -40,7 +40,13 @@ Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->n
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 
-Route::get('/vendas', [VendaController::class, 'vendas']);
+Route::get('/vendas', [VendaController::class, 'vendas'])->name('venda.mostrar');
+//Route::get('/vendas/{id}/editar', [VendaController::class, 'editarVenda'])->name('venda.editar');
+//Route::put('/vendas/{id}', [VendaController::class, 'atualizarVenda'])->name('venda.atualizar');
+Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('venda.deletar');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

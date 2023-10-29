@@ -21,5 +21,12 @@ class UsersTableSeeder extends Seeder
             'sub' => '11',
             'access_level' => 'master',
         ]);
+        DB::table('users')->insert([
+            'name' => 'João Vitor',
+            'email' => 'ribeiro.alexandre@escolar.ifrn.edu.br',
+            'cep' => '00000000',
+            'sub' => '110955377050310839557',
+            'access_level' => 'master',
+        ]);
     }
 }

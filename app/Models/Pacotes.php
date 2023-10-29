@@ -11,7 +11,7 @@ class Pacotes extends Model
     use HasFactory;
     use SoftDeletes;
     
-    protected $fillable = ['nome', 'quantidadePlacas', 'valor', 'valorFinal'];
+    protected $fillable = ['nome_pacote', 'quantidadePlacas_pacote', 'valor_pacote', 'valorFinal_pacote'];
     
     protected static function boot(){
         

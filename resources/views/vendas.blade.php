@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vendas</title>
+    <title>Dados da Tabela</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <h1>Lista de Vendas</h1>
+    <h1>Dados da Tabela</h1>
 
-    <table border="1">
+    <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>Nome do Usuário</th>
                 <th>Email</th>
-                <!-- Adicione outras colunas aqui conforme necessário -->
+                <th>Endereço</th>
+                <th>Nome do Pacote</th>
+                <th>Quantidade de Placas</th>
+                <th>Valor Final</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($vendas as $venda)
+            @foreach($dadosVendas as $venda)
             <tr>
-                <td>{{ $venda->id }}</td>
-                <td>{{ $venda->name }}</td>
-                <td>{{ $venda->email }}</td>
-                <!-- Adicione outras células conforme necessário -->
+                <td>{{ $venda->user->name }}</td>
+                <td>{{ $venda->user->email }}</td>
+                <td>{{ $venda->user->address }}</td>
+                <td>{{ $venda->nomePacote }}</td>
+                <td>{{ $venda->quantidadePlaca }}</td>
+                <td>R$ {{ $venda->valorFinal }}</td>
+                <td>
+                    <form method="POST" action="{{ route('venda.deletar', ['id' => $venda->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Deletar</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

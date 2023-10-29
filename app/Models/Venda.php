@@ -4,25 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Pacotes;
 
 class Venda extends Model
 {
-    protected $table = 'vendas'; // Define o nome da tabela
+    protected $fillable = ['nomePacote', 'quantidadePlaca', 'valorFinal', 'users_id'];
 
-    protected $fillable = [
-        'name',
-        'email',
-        'cpf',
-        'cep',
-        'numero_casa',
-        'logradouro',
-        'bairro',
-        'cidade',
-        'estado',
-        'access_level',
-        'email_verified_at',
-        // Se você utilizar 'timestamps' do Laravel, não é necessário adicionar 'created_at' e 'updated_at' aqui
-    ];
-
-    // Se houver necessidade de adicionar relações ou métodos no modelo, pode ser feito aqui
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
 }
+

@@ -12,15 +12,15 @@ class Clientes extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'nome',
-        'cpf',
-        'email',
-        'senha',
-        'cep',
-        'logradouro',
-        'bairro',
-        'cidade',
-        'estado',
+        'nome_clientes',
+        'cpf_clientes',
+        'email_clientes',
+        'senha_clientes',
+        'cep_clientes',
+        'logradouro_clientes',
+        'bairro_clientes',
+        'cidade_clientes',
+        'estado_clientes',
     ];
 
     //implementar dps a logica do cep
