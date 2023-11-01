@@ -6,6 +6,7 @@ use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\VendaController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomePageController::class,"index"])->name('index');
-Route::get('/dash', [DashboardController::class,"dash"])->name('dashboard');
+//Route::get('/dash', [DashboardController::class,"dash"])->name('dashboard');
 
 
 // Route::get('/dashboard', function () {
@@ -45,7 +46,7 @@ Route::get('/vendas', [VendaController::class, 'vendas'])->name('venda.mostrar')
 //Route::put('/vendas/{id}', [VendaController::class, 'atualizarVenda'])->name('venda.atualizar');
 Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('venda.deletar');
 
-
+Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 
 
 Route::get('/dashboard', function () {

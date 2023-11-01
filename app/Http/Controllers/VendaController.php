@@ -8,6 +8,7 @@ use App\Models\Venda;
 use App\Models\User;
 use App\Models\Pacotes;
 
+
 class VendaController extends Controller
 {
     public function ReceberDados (Request $request)
@@ -63,5 +64,11 @@ class VendaController extends Controller
 
         return redirect()->route('venda.mostrar')->with('success', 'Venda deletada com sucesso');
     }
+
+    public function obterTotal() {
+        $totalVendas = Venda::sum('valorFinal');        
+        return response()->json(["totalVendas" => $totalVendas]);
+    }
+
 }
 

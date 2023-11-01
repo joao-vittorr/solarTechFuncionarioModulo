@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use App\Models\Venda;
 
 class DashboardController extends Controller
 {
-    public function dash(Request $request){
-        return view("dashboard");
+
+
+    public function index(){
+        return view('dashboard');
     }
 
 }

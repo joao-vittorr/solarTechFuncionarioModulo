@@ -16,17 +16,12 @@ $(function () {
   var salesChart = new Chart($salesChart, {
     type: 'bar',
     data: {
-      labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      labels: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI','JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'],
       datasets: [
         {
           backgroundColor: '#007bff',
           borderColor: '#007bff',
           data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
-        },
-        {
-          backgroundColor: '#ced4da',
-          borderColor: '#ced4da',
-          data: [700, 1700, 2700, 2000, 1800, 1500, 2000]
         }
       ]
     },
@@ -62,7 +57,7 @@ $(function () {
                 value += 'k'
               }
 
-              return '$' + value
+              return 'R$ ' + value
             }
           }, ticksStyle)
         }],
@@ -92,17 +87,6 @@ $(function () {
         fill: false
         // pointHoverBackgroundColor: '#007bff',
         // pointHoverBorderColor    : '#007bff'
-      },
-      {
-        type: 'line',
-        data: [60, 80, 70, 67, 80, 77, 100],
-        backgroundColor: 'tansparent',
-        borderColor: '#ced4da',
-        pointBorderColor: '#ced4da',
-        pointBackgroundColor: '#ced4da',
-        fill: false
-        // pointHoverBackgroundColor: '#ced4da',
-        // pointHoverBorderColor    : '#ced4da'
       }]
     },
     options: {

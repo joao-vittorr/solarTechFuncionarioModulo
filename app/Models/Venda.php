@@ -9,7 +9,7 @@ use App\Models\Pacotes;
 
 class Venda extends Model
 {
-    protected $fillable = ['nomePacote', 'quantidadePlaca', 'valorFinal', 'users_id'];
+    protected $fillable = ['nomePacote', 'quantidadePlacas', 'valorFinal', 'users_id'];
 
     public function user()
     {

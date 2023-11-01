@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/main.css')}}">
   <link rel="stylesheet" href="{{asset('scss/_sidebar-mini.scss')}}">
 </head>
 <!--
@@ -178,9 +179,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{asset('images/logoProjetoSolarTech.png')}}" alt="Logo Projeto SolarTech" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="{{ route('dashboard')}}" class="brand-link">
+      <img src="{{asset('images/logoProjetoSolarTech.svg')}}" alt="Logo Projeto SolarTech" class="brand-image" style="opacity: .8"/>
+      <span class="brand-text font-weight-light">SolarTech</span>
     </a>
 
     <!-- Sidebar -->
@@ -619,23 +620,24 @@
             <div class="card">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Sales</h3>
+                  <h3 class="card-title">{{__("Sales")}}</h3>
                   <a href="javascript:void(0);">View Report</a>
                 </div>
               </div>
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">$18,230.00</span>
-                    <span>Sales Over Time</span>
+                    <span class="text-bold text-lg vendas"></span>
+                    <span>{{__("Sales Over Time")}}</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success">
                       <i class="fas fa-arrow-up"></i> 33.1%
                     </span>
-                    <span class="text-muted">Since last month</span>
+                    <span class="text-muted">{{__("Since last month")}}</span>
                   </p>
                 </div>
+
                 <!-- /.d-flex -->
 
                 <div class="position-relative mb-4">
@@ -644,11 +646,7 @@
 
                 <div class="d-flex flex-row justify-content-end">
                   <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This year
-                  </span>
-
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last year
+                    <i class="fas fa-square text-primary"></i> 2023
                   </span>
                 </div>
               </div>
@@ -738,6 +736,7 @@
 
   <!-- jQuery -->
   <script src="{{asset('js/jquery.min.js')}}"></script>
+  <script src="{{asset('js/main.js')}}"></script>
   <!-- Bootstrap -->
   <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
   <!-- AdminLTE -->
