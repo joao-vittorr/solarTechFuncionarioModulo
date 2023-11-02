@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\VendaController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,10 @@ Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');;
+
+Route::get('/admin/users', [AdminUserController::class, 'index'])->name('gerenciar.funcionario');
+Route::put('/admin/users/{userId}/update-level', [AdminUserController::class, 'updateLevel'])->name('gerenciar.funcionario.updateLevel');
+Route::get('/admin/users/searchByCPF', [AdminUserController::class, 'searchByCPF'])->name('gerenciar.funcionario.searchByCPF');
 
 
 

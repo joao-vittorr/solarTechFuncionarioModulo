@@ -20,6 +20,7 @@ class UsersTableSeeder extends Seeder
             'cep' => '00000000',
             'sub' => '11',
             'access_level' => 'master',
+            'cpf' => '00000000000',
         ]);
         DB::table('users')->insert([
             'name' => 'João Vitor',
@@ -27,6 +28,7 @@ class UsersTableSeeder extends Seeder
             'cep' => '00000000',
             'sub' => '110955377050310839557',
             'access_level' => 'master',
+            'cpf' => '11111111111',
         ]);
     }
 }
