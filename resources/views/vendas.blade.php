@@ -411,9 +411,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="{{ route('gerenciar.funcionario') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
+                  <p>Tabela de Funcionários</p>
                 </a>
               </li>
               <li class="nav-item">

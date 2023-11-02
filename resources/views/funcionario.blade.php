@@ -411,9 +411,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="{{ route('gerenciar.funcionario') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
+                  <p>Tabela de Funcionários</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -445,15 +445,15 @@
               <button type="submit">Buscar</button>
             </form>
 
-            <table>
+            <table class="table">
               <!-- Restante da tabela permanece igual -->
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Nome</th>
-                  <th>CPF</th>
-                  <th>Nível de Acesso</th>
-                  <th>Ações</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">CPF</th>
+                  <th scope="col">Nível Atual</th>
+                  <th scope="col">Atualizar Nível</th>
                 </tr>
               </thead>
               <tbody>
@@ -462,6 +462,7 @@
                   <td>{{ $user->id }}</td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->cpf }}</td>
+                  <td>{{ $user->access_level }}</td>
                   <td>
                     <form method="POST" action="{{ route('gerenciar.funcionario.updateLevel', $user->id) }}">
                       @csrf
