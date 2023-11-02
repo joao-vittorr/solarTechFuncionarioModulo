@@ -180,7 +180,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard')}}" class="brand-link">
-      <img src="{{asset('images/logoProjetoSolarTech.svg')}}" alt="Logo Projeto SolarTech" class="brand-image" style="opacity: .8"/>
+      <img src="{{asset('images/logoProjetoSolarTech.svg')}}" alt="Logo Projeto SolarTech" class="brand-image" style="opacity: .8" />
       <span class="brand-text font-weight-light">SolarTech</span>
     </a>
 
@@ -411,12 +411,14 @@
                   <p>Tabela de Vendas</p>
                 </a>
               </li>
+              @can('admin')
               <li class="nav-item">
                 <a href="{{ route('gerenciar.funcionario') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tabela de Funcionários</p>
                 </a>
               </li>
+              @endcan
               <li class="nav-item">
                 <a href="pages/tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

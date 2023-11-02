@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\User; // Certifique-se de importar o modelo User
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -19,8 +20,17 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any authentication / authorization services.
      */
-    public function boot(): void
-    {
-        //
-    }
+
+     
+     public function boot()
+     {
+         $this->registerPolicies();
+     
+         Gate::define('admin', function ($user) {
+             $accessLevel = User::where('id', $user->id)->value('access_level');
+             return $accessLevel === 'admin';
+         });
+     }
+     
+    
 }

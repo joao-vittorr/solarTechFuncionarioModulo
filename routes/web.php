@@ -54,9 +54,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');;
 
-Route::get('/admin/users', [AdminUserController::class, 'index'])->name('gerenciar.funcionario');
-Route::put('/admin/users/{userId}/update-level', [AdminUserController::class, 'updateLevel'])->name('gerenciar.funcionario.updateLevel');
-Route::get('/admin/users/searchByCPF', [AdminUserController::class, 'searchByCPF'])->name('gerenciar.funcionario.searchByCPF');
+
+Route::middleware(['admin.access'])->group(function () {
+    Route::get('/admin/users', [AdminUserController::class, 'index'])->name('gerenciar.funcionario');
+    Route::put('/admin/users/{userId}/update-level', [AdminUserController::class, 'updateLevel'])->name('gerenciar.funcionario.updateLevel');
+    Route::get('/admin/users/searchByCPF', [AdminUserController::class, 'searchByCPF'])->name('gerenciar.funcionario.searchByCPF');
+});
+
 
 
 
