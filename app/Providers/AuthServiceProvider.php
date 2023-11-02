@@ -30,6 +30,15 @@ class AuthServiceProvider extends ServiceProvider
              $accessLevel = User::where('id', $user->id)->value('access_level');
              return $accessLevel === 'admin';
          });
+         
+         Gate::define('funcionario', function ($user) {
+            $accessLevel = User::where('id', $user->id)->value('access_level');
+            return $accessLevel === 'funcionario';
+        });
+        Gate::define('admin-funcionario', function ($user) {
+            $accessLevel = User::where('id', $user->id)->value('access_level');
+            return in_array($accessLevel, ['admin', 'funcionario']);
+        });
      }
      
     
