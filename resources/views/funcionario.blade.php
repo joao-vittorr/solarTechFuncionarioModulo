@@ -41,14 +41,6 @@
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-              {{ __('Log Out') }}
-            </button>
-        </li>
       </ul>
 
       <!-- Right navbar links -->
@@ -171,6 +163,11 @@
       <i class="fas fa-th-large"></i>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" role="button" id="logout-link">
+      @csrf
+      <i class="fa-solid fa-right-from-bracket logout"></i>
+    </a>
   </ul>
   </nav>
   <!-- /.navbar -->
@@ -514,6 +511,7 @@
 
   <!-- jQuery -->
   <script src="{{asset('js/jquery.min.js')}}"></script>
+  <script src="{{asset('js/main.js')}}"></script>
   <!-- Bootstrap -->
   <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
   <!-- AdminLTE -->
@@ -521,6 +519,8 @@
 
   <!-- OPTIONAL SCRIPTS -->
   <script src="{{asset('js/Chart.min.js')}}"></script>
+    {{-- Font icons --}}
+  <script src="{{asset('js/iconFontAwesome.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('js/demo.js')}}"></script>
   <script src="{{asset('js/ControlSidebar.js')}}"></script>

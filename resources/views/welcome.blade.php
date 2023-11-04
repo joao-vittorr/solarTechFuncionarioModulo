@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>SolarTech</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -31,7 +31,7 @@
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex justify-center">
-                <img src="{{asset('images/logoProjetoSolarTech.png')}}" alt="" class="h-17 w-auto bg-gray-100 dark:bg-gray-900">
+                <img src="{{asset('images/logoProjetoSolarTech.svg')}}" alt="" class="h-17 w-auto bg-gray-100 dark:bg-gray-900">
             </div>
 
             <div class="mt-16">
