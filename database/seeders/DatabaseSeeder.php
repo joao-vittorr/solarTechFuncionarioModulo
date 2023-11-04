@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             PacotesSeeder::class,
             UsersTableSeeder::class,
             VendasSeeder::class,
+            VisitaTecnicaSeeder::class,
         ]);
     }
 }

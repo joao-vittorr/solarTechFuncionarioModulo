@@ -8,6 +8,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\VendaController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\VisitaTecnicaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,12 @@ Route::middleware(['admin.access'])->group(function () {
     Route::put('/admin/users/{userId}/update-level', [AdminUserController::class, 'updateLevel'])->name('gerenciar.funcionario.updateLevel');
     Route::get('/admin/users/searchByCPF', [AdminUserController::class, 'searchByCPF'])->name('gerenciar.funcionario.searchByCPF');
 });
+
+
+Route::get('/visitas', [VisitaTecnicaController::class, 'index'])->name('visitas');
+Route::get('/visitas/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
+Route::post('/visitas', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
+Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('visitas.usuarios-com-visitas');
 
 
 

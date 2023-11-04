@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'ribeiro.alexandre@escolar.ifrn.edu.br',
             'cep' => '00000000',
             'sub' => '110955377050310839557',
-            'access_level' => 'master',
+            'access_level' => 'admin',
             'cpf' => '11111111111',
         ]);
     }

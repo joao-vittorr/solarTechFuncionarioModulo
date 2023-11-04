@@ -30,6 +30,160 @@ class VendasSeeder extends Seeder
             'users_id' => $users->id
         ]);
 
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+
+                Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+        Venda::create([
+            'nomePacote' => 'Pacote Teste 2',
+            'quantidadePlacas' => 3,
+            'valorFinal' => 75.25,
+            'users_id' => $users->id
+        ]);
+
+
         // Adicione mais dados de teste conforme necessário
     }
 }

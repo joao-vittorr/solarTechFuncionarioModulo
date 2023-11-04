@@ -23,7 +23,7 @@ class VendaController extends Controller
         
         $venda -> save();
 
-        return response()->json(['message' => 'Compra realizada com sucesso']);
+        return response()->json(['message' => 'True']);
     }
 
 
