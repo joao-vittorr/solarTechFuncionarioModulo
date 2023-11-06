@@ -1,5 +1,12 @@
-.lougout{
+.logout{
     color: grey;
     border: none;
     background:none;
+}
+.background_solar{
+    position: absolute;
+    opacity: 0.05;
+    background-repeat: repeat-y;
+    max-width: 90%;
+    max-height: 90%;
 }

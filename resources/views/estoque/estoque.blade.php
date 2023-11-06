@@ -15,6 +15,9 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
   <link rel="stylesheet" href="{{asset('scss/_sidebar-mini.scss')}}">
+   <!--DataTables-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
 </head>
 <!--
 `body` tag options:
@@ -430,24 +433,40 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <br><br>
-
-      <h1>Usuários que solicitaram visita técnica</h1>
+      <h1 class="justify-content-center">Produtos vendidos</h1>
       <!-- Main content -->
       <div>
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
-
-
-              <ul>
-                @foreach($usuariosComVisitas as $visita)
-                <p>Detalhes: {{ $visita->detalhes }}</p>
-                <p>Data Agendada: {{ $visita->data_agendada }}</p>
-                <p>Usuário: {{ $visita->user->name }}</p> <!-- Acessando o nome do usuário via a relação -->
-                <!-- Outros detalhes que deseja exibir -->
-                @endforeach
-              </ul>
-
+              <table id="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Usuário</th>
+                    <th scope="col">Pacote</th>
+                    <th scope="col">Qtd de Placas</th>
+                    <th scope="col">Valor Final</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($dadosVendas as $venda)
+                  <tr>
+                    <td>{{ $venda->user->name }}</td>
+                    <td>{{ $venda->nomePacote }}</td>
+                    <td>{{ $venda->quantidadePlacas }}</td>
+                    <td>R$ {{ $venda->valorFinal }}</td>
+                    <td>
+                      <form method="POST" action="{{ route('venda.deletar', ['id' => $venda->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Deletar</button>
+                      </form>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
           </div>
           <!-- /.row -->
@@ -487,10 +506,15 @@
 
     <!-- OPTIONAL SCRIPTS -->
     <script src="{{asset('js/Chart.min.js')}}"></script>
-    {{-- Font icons --}}
-    <script src="{{asset('js/iconFontAwesome.js')}}"></script>
+    <!--DataTables-->
+    <script src="{{asset('js/dataTable.js')}}"></script>
+    <script>
+      let table = new DataTable('#data-table');
+    </script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('js/demo.js')}}"></script>
+    {{-- Font icons --}}
+    <script src="{{asset('js/iconFontAwesome.js')}}"></script>
     <script src="{{asset('js/ControlSidebar.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{asset('js/dashboard3.js')}}"></script>

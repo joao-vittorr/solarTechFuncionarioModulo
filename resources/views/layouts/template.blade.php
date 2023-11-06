@@ -7,7 +7,8 @@
     <title>SolarTech</title>
     <link rel="icon" href="{{ asset('images/logoProjetoSolarTechSemTexto.svg') }}" sizes="any" type="image/svg+xml">
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- IonIcons -->
@@ -16,39 +17,48 @@
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/_sidebar-mini.scss') }}">
     <!-- DataTables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="{{ asset('css/dataTable.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        @include('partials.navbar') <!-- Adicione a sua barra de navegação aqui -->
+        @include('layouts.partials.navbar') <!-- Adicione a sua barra de navegação aqui -->
         <!-- Main Sidebar Container -->
-        @include('partials.sidebar') <!-- Adicione a sua barra lateral aqui -->
+        @include('layouts.partials.sidebar') <!-- Adicione a sua barra lateral aqui -->
         <!-- Content Wrapper. Contains page content -->
+        @include('layouts.partials.control-sidebar')
         <div class="content-wrapper">
             <div class="container">
                 @yield('content') <!-- Conteúdo dinâmico será inserido aqui -->
             </div>
         </div>
         <!-- Main Footer -->
-        @include('partials.footer') <!-- Adicione o rodapé aqui -->
+        @include('layouts.partials.footer') <!-- Adicione o rodapé aqui -->
     </div>
     <!-- REQUIRED SCRIPTS -->
+    
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE -->
-    <script src="{{ asset('js/adminlte.js') }}"></script>
-    <!-- OPTIONAL SCRIPTS -->
-    <script src="{{ asset('js/Chart.min.js') }}"></script>
+
     <!-- DataTables -->
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script>
-        let table = new DataTable('#data-table');
+        let table = new DataTable('#data-table', {
+            language: {
+                url: "{{ asset('lang/pt-br.json') }}",
+            },
+        });
     </script>
+    
+    <script src="{{ asset('js/adminlte.js') }}"></script>
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
+
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('js/demo.js') }}"></script>
     {{-- Font icons --}}

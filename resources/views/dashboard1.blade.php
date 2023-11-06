@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SolarTech</title>
-
+  <link rel="icon" href="{{asset('images/logoProjetoSolarTechSemTexto.svg')}}" sizes="any" type="image/svg+xml">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -467,7 +467,7 @@
               <div class="card-body">
                 <div class="d-flex">
                   <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">820</span>
+                    <span class="text-bold text-lg">820000</span>
                     <span>Visitors Over Time</span>
                   </p>
                   <p class="ml-auto d-flex flex-column text-right">

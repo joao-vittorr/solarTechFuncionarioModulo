@@ -40,3 +40,5 @@ logoutLink.addEventListener('click', (e) => {
     console.error('Token CSRF não encontrado');
   }
 });
+
+

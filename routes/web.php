@@ -8,6 +8,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\VendaController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\VisitaTecnicaController;
 
 /*
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
+Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard');
 
 Route::get('/vendas', [VendaController::class, 'vendas'])->name('venda.mostrar');
 //Route::get('/vendas/{id}/editar', [VendaController::class, 'editarVenda'])->name('venda.editar');
@@ -50,10 +52,16 @@ Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('v
 
 Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 
+Route::resource('/despesas', DespesasController::class);
+Route::get('/despesas', [DespesasController::class, 'index'])->name('despesas.index');
+Route::get('/despesas/{id}', 'DespesasController@show')->name('despesas.show');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');;
+
+Route::get('/estoque', function(){ return view('estoque');});
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');;
 
 
 Route::middleware(['admin.access'])->group(function () {
