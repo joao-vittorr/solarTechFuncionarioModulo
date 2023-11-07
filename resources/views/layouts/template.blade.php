@@ -29,9 +29,9 @@
         <!-- Content Wrapper. Contains page content -->
         @include('layouts.partials.control-sidebar')
         <div class="content-wrapper">
-            <div class="container">
-                @yield('content') <!-- Conteúdo dinâmico será inserido aqui -->
-            </div>
+           
+            @yield('content') <!-- Conteúdo dinâmico será inserido aqui -->
+           
         </div>
         <!-- Main Footer -->
         @include('layouts.partials.footer') <!-- Adicione o rodapé aqui -->

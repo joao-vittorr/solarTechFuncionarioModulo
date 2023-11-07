@@ -1,7 +1,7 @@
 @extends('layouts.template') 
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content">
       <br><br>
       <h1 class="justify-content-center">Produtos vendidos</h1>
       <!-- Main content -->

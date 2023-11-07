@@ -52,9 +52,14 @@ Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('v
 
 Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 
-Route::resource('/despesas', DespesasController::class);
+
+Route::get('/despesas/{despesa}', [DespesasController::class, 'edit'])->name('despesas.edit');
+Route::get('/despesas/create', [DespesasController::class, 'create'])->name('despesas.create');
 Route::get('/despesas', [DespesasController::class, 'index'])->name('despesas.index');
-Route::get('/despesas/{id}', 'DespesasController@show')->name('despesas.show');
+Route::delete('/despesas/{id}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
+Route::put('/despesas/{id}', [DespesasController::class, 'update'])->name('despesas.update');
+Route::post('/despesas', [DespesasController::class, 'store'])->name('despesas.store');
+
 
 
 Route::get('/estoque', function(){ return view('estoque');});

@@ -11,29 +11,35 @@ class DespesasController extends Controller
 
     public function index()
     {
- 
+        //Despesas::factory(2)->create();
         $despesas = Despesas::all();
         return view('despesas.index', compact('despesas'));
     }
 
     public function store(Request $request)
     {
+        $user_id = auth()->user()->id;
+        $data_despesa = date('Y-m-d', strtotime($request->input('data_despesa')));
         Despesas::create([
             'valor' => $request->input('valor'),
             'descricao' => $request->input('descricao'),
-            'data_despesa' => $request->input('data_despesa'),
+            'data_despesa' => $data_despesa,
             'categoria' => $request->input('categoria'),
-            'user_id' => auth()->id(), // Associar a despesa ao usuário autenticado
+            'user_id' => $user_id, // Associar a despesa ao usuário autenticado
         ]);
 
         return redirect()->route('despesas.index')->with('success', 'Despesa cadastrada com sucesso.');
     }
 
-    public function edit($id)
-    {
-        $despesa = Despesas::find($id);
-        return view('despesas.edit', compact('despesa'));
+    public function create(){
+        return view("despesas.form", ["despesa"=>new Despesas()] );
     }
+
+     public function edit($id)
+     {
+        $despesa = Despesas::find($id);
+        return view('despesas.form', compact('despesa'));
+     }
 
     public function update(Request $request, $id)
     {
@@ -48,7 +54,7 @@ class DespesasController extends Controller
         $despesa->valor = $request->input('valor');
         $despesa->descricao = $request->input('descricao');
         $despesa->data_despesa = $request->input('data_despesa');
-        $despesa->data_despesa = $request->input('categoria');
+        $despesa->categoria = $request->input('categoria');
         $despesa->save();
 
         return redirect()->route('despesas.index')->with('success', 'Despesa atualizada com sucesso.');
