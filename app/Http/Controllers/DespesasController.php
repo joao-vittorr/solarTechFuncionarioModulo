@@ -51,12 +51,17 @@ class DespesasController extends Controller
         ]);
 
         $despesa = Despesas::find($id);
+
+        if (!$despesa) {
+            return response()->json(['message' => 'Despesa não encontrada'], 404);
+        }
+        dd($despesa);
         $despesa->valor = $request->input('valor');
         $despesa->descricao = $request->input('descricao');
         $despesa->data_despesa = $request->input('data_despesa');
         $despesa->categoria = $request->input('categoria');
         $despesa->save();
-
+        
         return redirect()->route('despesas.index')->with('success', 'Despesa atualizada com sucesso.');
     }
 
