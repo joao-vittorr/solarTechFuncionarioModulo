@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -7,45 +7,44 @@
     <title>SolarTech</title>
     <link rel="icon" href="{{ asset('images/logoProjetoSolarTechSemTexto.svg') }}" sizes="any" type="image/svg+xml">
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('scss/_sidebar-mini.scss') }}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('css/dataTable.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-<body class="conf-body">
-    <header>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
         <!-- Navbar -->
         @include('layouts.partials.navbar') <!-- Adicione a sua barra de navegação aqui -->
-    </header>
-    <br><br><br>
-    <main class="wrapper">
+        <!-- Main Sidebar Container -->
+        @include('layouts.partials.sidebar') <!-- Adicione a sua barra lateral aqui -->
+        <!-- Content Wrapper. Contains page content -->
+        @include('layouts.partials.control-sidebar')
         <div class="content-wrapper">
-
+           
             @yield('content') <!-- Conteúdo dinâmico será inserido aqui -->
-
+           
         </div>
-    </main>
-
-    <footer>
-        <!-- Footer -->
+        <!-- Main Footer -->
         @include('layouts.partials.footer') <!-- Adicione o rodapé aqui -->
-    </footer>
-
+    </div>
     <!-- REQUIRED SCRIPTS -->
-
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <!-- AdminLTE -->
+
     <!-- DataTables -->
     <script src="{{ asset('js/dataTable.js') }}"></script>
     <script>
@@ -55,7 +54,7 @@
             },
         });
     </script>
-
+    
     <script src="{{ asset('js/adminlte.js') }}"></script>
     <!-- OPTIONAL SCRIPTS -->
     <script src="{{ asset('js/Chart.min.js') }}"></script>
