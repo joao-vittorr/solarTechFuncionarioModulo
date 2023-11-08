@@ -61,8 +61,9 @@ Route::delete('/despesas/{id}', [DespesasController::class, 'destroy'])->name('d
 Route::put('/despesas/{id}', [DespesasController::class, 'update'])->name('despesas.update');
 Route::post('/despesas', [DespesasController::class, 'store'])->name('despesas.store');
 
-Route::get('/categorias/{categoria}', [CategoriasController::class, 'edit'])->name('categorias.edit');
+
 Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
+Route::get('/categorias/{categoria}', [CategoriasController::class, 'edit'])->name('categorias.edit');
 Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
 Route::post('/categorias', [CategoriasController::class, 'store'])->name('categorias.store');
 Route::put('/categorias/{id}', [CategoriasController::class, 'update'])->name('categorias.update');

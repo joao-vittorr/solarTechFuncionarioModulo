@@ -12,7 +12,7 @@ class DespesasController extends Controller
 
     public function index()
     {
-        //Despesas::factory(5)->create();
+        Despesas::factory(5)->create();
         $despesas = Despesas::all();
         return view('despesas.index', compact('despesas'));
     }
