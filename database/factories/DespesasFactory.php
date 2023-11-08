@@ -19,7 +19,7 @@ class DespesasFactory extends Factory
             'valor' => $this->faker->randomFloat(2, 10, 1000),
             'descricao' => $this->faker->sentence(4),
             'data_despesa' => $this->faker->date,
-            'categoria' => $this->faker->word,
+            'categoria_id' => $this->faker->numberBetween(1,2,3,5,6),
             'user_id' => $this->faker->numberBetween(1,2),
         ];
     }

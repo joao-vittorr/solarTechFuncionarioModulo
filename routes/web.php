@@ -6,10 +6,11 @@ use App\Http\Controllers\HomePageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\VendaController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\VisitaTecnicaController;
+use App\Http\Controllers\CategoriasController;
+use App\Models\Categorias;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,11 @@ Route::delete('/despesas/{id}', [DespesasController::class, 'destroy'])->name('d
 Route::put('/despesas/{id}', [DespesasController::class, 'update'])->name('despesas.update');
 Route::post('/despesas', [DespesasController::class, 'store'])->name('despesas.store');
 
-
+Route::get('/categorias/{categoria}', [CategoriasController::class, 'edit'])->name('categorias.edit');
+Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
+Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
+Route::post('/categorias', [CategoriasController::class, 'store'])->name('categorias.store');
+Route::put('/categorias/{id}', [CategoriasController::class, 'update'])->name('categorias.update');
 
 Route::get('/estoque', function(){ return view('estoque');});
 

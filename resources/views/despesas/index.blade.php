@@ -26,7 +26,7 @@
                                         <td>{{ $despesa->descricao }}</td>
                                         <td>R$ {{ number_format($despesa->valor, 2, ',', '.') }}</td>
                                         <td>{{ date('d/m/Y', strtotime($despesa->data_despesa)) }}</td>
-                                        <td>{{ $despesa->categoria }}</td>
+                                        <td>{{ $despesa->categoria['nome'] }}</td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{route("despesas.edit",$despesa)}}" class="btn btn-block btn-info">

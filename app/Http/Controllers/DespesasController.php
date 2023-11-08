@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categorias;
 use Illuminate\Http\Request;
 use App\Models\Despesas;
 
@@ -11,7 +12,7 @@ class DespesasController extends Controller
 
     public function index()
     {
-        //Despesas::factory(2)->create();
+        //Despesas::factory(5)->create();
         $despesas = Despesas::all();
         return view('despesas.index', compact('despesas'));
     }
@@ -24,8 +25,8 @@ class DespesasController extends Controller
             'valor' => $request->input('valor'),
             'descricao' => $request->input('descricao'),
             'data_despesa' => $data_despesa,
-            'categoria' => $request->input('categoria'),
-            'user_id' => $user_id, // Associar a despesa ao usuário autenticado
+            'categoria_id' => $request->input('categoria'),
+            'user_id' => $user_id, 
         ]);
 
         return redirect()->route('despesas.index')->with('success', 'Despesa cadastrada com sucesso.');
@@ -38,28 +39,23 @@ class DespesasController extends Controller
      public function edit($id)
      {
         $despesa = Despesas::find($id);
-        return view('despesas.form', compact('despesa'));
+        $categorias = Categorias::all();
+        return view('despesas.form', compact('despesa', 'categorias'));
      }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'valor' => 'required',
-            'descricao' => 'required',
-            'data_despesa' => 'required',
-            'categoria' => 'required',
-        ]);
 
         $despesa = Despesas::find($id);
 
         if (!$despesa) {
             return response()->json(['message' => 'Despesa não encontrada'], 404);
         }
-        dd($despesa);
+
         $despesa->valor = $request->input('valor');
         $despesa->descricao = $request->input('descricao');
         $despesa->data_despesa = $request->input('data_despesa');
-        $despesa->categoria = $request->input('categoria');
+        $despesa->categoria_id = $request->input('categoria_id');
         $despesa->save();
         
         return redirect()->route('despesas.index')->with('success', 'Despesa atualizada com sucesso.');

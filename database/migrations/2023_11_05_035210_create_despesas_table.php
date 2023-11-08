@@ -18,7 +18,8 @@ return new class extends Migration
             $table->dateTime('data_despesa');
             $table->double('valor');
             $table->text('descricao');
-            $table->text('categoria');
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->timestamps();
         });
     }
