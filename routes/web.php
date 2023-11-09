@@ -50,7 +50,6 @@ Route::get('/vendas', [VendaController::class, 'vendas'])->name('venda.mostrar')
 //Route::get('/vendas/{id}/editar', [VendaController::class, 'editarVenda'])->name('venda.editar');
 //Route::put('/vendas/{id}', [VendaController::class, 'atualizarVenda'])->name('venda.atualizar');
 Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('venda.deletar');
-
 Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 
 
@@ -82,11 +81,17 @@ Route::middleware(['admin.access'])->group(function () {
 });
 
 
-Route::get('/visitas', [VisitaTecnicaController::class, 'index'])->name('visitas');
-Route::get('/visitas/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
-Route::post('/visitas', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
-Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('visitas.usuarios-com-visitas');
+// Route::get('/visitas', [VisitaTecnicaController::class, 'index'])->name('visitas');
+// Route::get('/visitas/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
+// Route::post('/visitas', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
+// Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('visitas.usuarios-com-visitas');
 
+Route::prefix('gerenciar-visitas')->group(function () {
+    Route::get('/', [VisitaTecnicaController::class, 'index'])->name('index');
+    Route::get('/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
+    Route::post('/', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
+    Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('index');
+});
 
 
 

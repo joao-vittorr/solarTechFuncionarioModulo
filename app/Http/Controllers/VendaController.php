@@ -26,14 +26,39 @@ class VendaController extends Controller
         return response()->json(['message' => 'True']);
     }
 
-
-    public function vendas() //retorna na view as vendas
+    public function vendas(Request $request)
     {
-        // Buscar todas as vendas com os dados dos usuários associados
-        $dadosVendas = Venda::with('user')->get();
+        $tipoPacote = $request->input('tipoPacote');
+        $cpfUsuario = $request->input('cpfUsuario');
+    
+        $query = Venda::with('user')->orderBy('created_at', 'desc');
+    
+        if ($tipoPacote) {
+            $query->where('nomePacote', 'like', '%' . $tipoPacote . '%');
+        }
+    
+        if ($cpfUsuario) {
+            $query->whereHas('user', function ($query) use ($cpfUsuario) {
+                $query->where('cpf', 'like', '%' . $cpfUsuario . '%');
+            });
+        }
+    
+        $dadosVendas = $query->paginate(10);
+    
+        return view('vendas', [
+            'dadosVendas' => $dadosVendas,
+            'tipoPacote' => $tipoPacote,
+            'cpfUsuario' => $cpfUsuario
+        ]);
+    }    
+    
+    // public function vendas() //retorna na view as vendas
+    // {
+    //     // Buscar todas as vendas com os dados dos usuários associados
+    //     $dadosVendas = Venda::with('user')->get();
 
-        return view('vendas', ['dadosVendas' => $dadosVendas]);
-    }
+    //     return view('vendas', ['dadosVendas' => $dadosVendas]);
+    // }
 
     public function editarVenda(Request $request, $id)
     {

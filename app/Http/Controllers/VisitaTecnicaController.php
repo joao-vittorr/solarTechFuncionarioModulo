@@ -12,13 +12,12 @@ class VisitaTecnicaController extends Controller
     public function index()
     {
         $visitasTecnicas = VisitaTecnica::all();
-        return view('visitas', compact('visitasTecnicas'));
+        return view('gerenciar-visitas.index', compact('visitasTecnicas'));
     }
 
     public function create()
     {
-        
-        return view('visitas');
+        return view('gerenciar-visitas.visitas-create');
     }
 
     public function store(Request $request)
@@ -38,13 +37,14 @@ class VisitaTecnicaController extends Controller
     
         $visitaTecnica->save();
     
-        return redirect()->route('visitas');
+        return redirect()->route('index');
     }
 
     public function usuariosComVisitasTecnicas()
     {
         $usuariosComVisitas = VisitaTecnica::where('necessita_visita', true)->get();
 
-        return view('usuarios-com-visitas', compact('usuariosComVisitas'));
+        return view('gerenciar-visitas.index', compact('usuariosComVisitas'));
     }
+    
 }
