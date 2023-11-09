@@ -16,6 +16,7 @@
       <div class="card mt-1">
         <div class="card-body">
           <h5 class="card-title">Nome do Usuário: {{ $venda->user->name }}</h5>
+          <p>CPF: {{ $venda->user->cpf }}</p>
           <h6 class="card-subtitle mb-2 text-body-secondary">Pacote escolhido: {{ $venda->nomePacote }}</h6>
           <p class="card-text">Quantidade de placas: {{ $venda->quantidadePlacas }} - Valor total: R$ {{ $venda->valorFinal }}</p>
           <a href="#" class="card-link">
