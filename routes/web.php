@@ -8,9 +8,10 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\VendaController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DespesasController;
+use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\VisitaTecnicaController;
 use App\Http\Controllers\CategoriasController;
-use App\Models\Categorias;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,14 +61,19 @@ Route::delete('/despesas/{id}', [DespesasController::class, 'destroy'])->name('d
 Route::put('/despesas/{id}', [DespesasController::class, 'update'])->name('despesas.update');
 Route::post('/despesas', [DespesasController::class, 'store'])->name('despesas.store');
 
+Route::get('/estoque', [EstoqueController::class, 'index'])->name('estoque.index');
+Route::get('/estoque/{produto}', [EstoqueController::class, 'edit'])->name('estoque.edit');
+Route::get('/estoque/create', [EstoqueController::class, 'create'])->name('estoque.create');
+Route::delete('/estoque/{id}', [EstoqueController::class, 'destroy'])->name('estoque.destroy');
+Route::put('/estoque/{id}', [EstoqueController::class, 'update'])->name('estoque.update');
+Route::post('/estoque', [EstoqueController::class, 'store'])->name('estoque.store');
+
 
 Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
 Route::get('/categorias/{categoria}', [CategoriasController::class, 'edit'])->name('categorias.edit');
 Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
 Route::post('/categorias', [CategoriasController::class, 'store'])->name('categorias.store');
 Route::put('/categorias/{id}', [CategoriasController::class, 'update'])->name('categorias.update');
-
-Route::get('/estoque', function(){ return view('estoque');});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

@@ -19,6 +19,7 @@ class DespesasController extends Controller
 
     public function store(Request $request)
     {
+
         $user_id = auth()->user()->id;
         $data_despesa = date('Y-m-d', strtotime($request->input('data_despesa')));
         Despesas::create([
@@ -55,7 +56,7 @@ class DespesasController extends Controller
         $despesa->valor = $request->input('valor');
         $despesa->descricao = $request->input('descricao');
         $despesa->data_despesa = $request->input('data_despesa');
-        $despesa->categoria_id = $request->input('categoria_id');
+        $despesa->categoria_id = $request->input('categoria');
         $despesa->save();
         
         return redirect()->route('despesas.index')->with('success', 'Despesa atualizada com sucesso.');

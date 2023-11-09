@@ -34,7 +34,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="{{ route('despesas.index') }}">Gerenciar Despesas</a></li>
-              <li><a class="dropdown-item" href="pages/forms/advanced.html">Gerenciar Estoque</a></li>
+              <li><a class="dropdown-item" href="{{ route('estoque.index') }}">Gerenciar Estoque</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>

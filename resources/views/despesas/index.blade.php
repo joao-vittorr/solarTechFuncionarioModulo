@@ -5,6 +5,9 @@
     <div class="content">
         <br>
         <h1 class="justify-content-center">{{ __('Expenses') }}</h1>
+        <a href="{{route('despesas.create')}}" class="btn btn-block btn-info">
+            Criar Nova Despesa
+          </a>
         <!-- Main content -->
         <div>
             <div class="container-fluid">
