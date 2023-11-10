@@ -31,24 +31,18 @@
                         </select>
                     </div>
 
-                    <div class="mb-3 col-3">
+                    <div class="mb-3 col-6">
                         <label for="valor">Valor</label>
                         <input type="number" name="valor" id="valor" class="form-control" step="0.01" value="{{ old('valor', optional($despesa)->valor) }}" required>
                     </div>
 
-                    <div class="mb-3 col-3">
+                    <div class="mb-3 col-6">
                         <label for="data"> Data da Despesa</label>
                         <input type="date" name="data_despesa" id="data_despesa" class="form-control" value="{{ old('data_despesa', optional($despesa)->data_despesa) }}" required>
                     </div>
                 </div>
 
 
-                <a href="{{ route('categorias.create') }}" class="btn btn-primary">Criar Nova Categoria</a>
-                <button type="submit" class="btn btn-primary">Salvar Despesa</button>
-
-                <a class='btn btn-secondary' href="{{ route('despesas.create') }}">
-                    Cadastrar Nova Despesa
-                </a>
                 <!-- @if ($despesa && $despesa->id) -->
             </form>
             <!-- <form method="POST" action="{{ route('despesas.destroy', ['id' => $despesa->id]) }}">
@@ -56,8 +50,13 @@
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Deletar</button>
             </form>
-            @endif
-     -->
+            @endif-->
+            <a href="{{ route('categorias.create') }}" class="btn btn-primary">Criar Nova Categoria</a>
+            <button type="submit" class="btn btn-primary">Salvar Despesa</button>
+
+            <a class='btn btn-secondary' href="{{ route('despesas.create') }}">
+                Cadastrar Nova Despesa
+            </a>
             <a class='btn btn-secondary' href="{{ route('despesas.index') }}">
                 Voltar
             </a>
