@@ -4,6 +4,18 @@
     position: relative;
     padding-bottom: 25px;
 }
+.logout{
+    color: grey;
+    border: none;
+    background:none;
+}
+.background_solar{
+    position: absolute;
+    opacity: 0.05;
+    background-repeat: repeat-y;
+    max-width: 90%;
+    max-height: 90%;
+}
 footer {
     color: white;
     text-align: center;
@@ -17,7 +29,11 @@ footer {
     align-items: center;
     gap: 0.2rem;
 }
-
 .custom-pagination .page-link {
     font-size: 14px; /* Ajuste o tamanho conforme desejado */
+}
+.bg-color-padrao{
+    background-color: #111827 !important;
+    opacity: 1;
+    color: white !important;
 }
