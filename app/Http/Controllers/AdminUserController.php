@@ -10,10 +10,12 @@ class AdminUserController extends Controller
 {
     public function index()
     {
-        $users = User::all(); // Obtém todos os usuários
-
+        $users = User::orderBy('created_at', 'desc')->paginate(10);
+    
         return view('funcionario', ['users' => $users]);
     }
+    
+    
 
     public function updateLevel(Request $request, $userId)
     {
@@ -26,8 +28,9 @@ class AdminUserController extends Controller
     public function searchByCPF(Request $request)
     {
         $cpf = $request->input('cpf');
-        $users = User::where('cpf', $cpf)->get();
-
+        $users = User::where('cpf', $cpf)->paginate(10); // Paginação com 10 itens por página
+    
         return view('funcionario', ['users' => $users]);
     }
+    
 }

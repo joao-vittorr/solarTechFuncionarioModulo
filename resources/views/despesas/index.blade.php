@@ -1,54 +1,40 @@
 @extends('layouts.template')
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content">
-        <br>
-        <h1 class="justify-content-center">{{ __('Expenses') }}</h1>
-        <!-- Main content -->
-        <div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <table id="data-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Descrição</th>
-                                    <th scope="col">Valor</th>
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Categoria</th>
-                                    <th scope="col">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($despesas as $despesa)
-                                    <tr>
-                                        <td>{{ $despesa->descricao }}</td>
-                                        <td>R$ {{ number_format($despesa->valor, 2, ',', '.') }}</td>
-                                        <td>{{ date('d/m/Y', strtotime($despesa->data_despesa)) }}</td>
-                                        <td>{{ $despesa->categoria['nome'] }}</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a href="{{route("despesas.edit",$despesa)}}" class="btn btn-block btn-info">
-                                                  Editar
-                                                </a>
-                                                <form method="POST" action="{{ route('despesas.destroy', ['id' => $despesa->id]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Deletar</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+
+
+<div class="container-fluid">
+    <h1>{{ __('Expenses') }}</h1>
+    <form action="{{ route('despesas.search') }}" method="GET">
+        <input type="text" name="categoria" placeholder="Buscar por categoria" value="{{ $categoria ?? '' }}">
+        <button type="submit">Buscar</button>
+    </form>
+    <div class="row row-cols-1 row-cols-md-2 g-4card-group">
+        @foreach ($despesas as $despesa)
+        <div class="col">
+            <div class="card mt-1">
+                <div class="card-body">
+                    <h5 class="card-title">Despesa: {{ $despesa->descricao }}, Valor: R$ {{ number_format($despesa->valor, 2, ',', '.') }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Data: {{ date('d/m/Y', strtotime($despesa->data_despesa)) }}</h6>
+                    <p class="card-text">Categoria: {{ $despesa->categoria->nome }}</p>
+                    <div class="btn-group">
+                        <a href="{{route("despesas.edit",$despesa)}}" class="btn btn-block btn-info">
+                            Editar
+                        </a>
+                        <form method="POST" action="{{ route('despesas.destroy', ['id' => $despesa->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Deletar</button>
+                        </form>
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container-fluid -->
             </div>
-            <!-- /.content -->
         </div>
+        @endforeach
     </div>
+    <!-- Pagination Links -->
+    <div class="d-flex justify-content-center mt-4 pagination">
+        {{ $despesas->links('components.pagination') }}
+    </div>
+</div>
 @endsection

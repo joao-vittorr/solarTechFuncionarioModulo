@@ -14,14 +14,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'ADMIN',
-            'email' => 'admin@admin.com',
-            'cep' => '00000000',
-            'sub' => '11',
-            'access_level' => 'master',
-            'cpf' => '00000000000',
-        ]);
+        for ($i = 1; $i <= 11; $i++) {
+            DB::table('users')->insert([
+                'name' => 'Usuário ' . $i,
+                'email' => 'usuario' . $i . '@example.com',
+                'cep' => '00000000',
+                'sub' => '1234567890' . $i,
+                'access_level' => 'user',
+                'cpf' => 'CPF' . $i . $i . $i . $i . $i . $i . $i . $i,
+            ]);
+        }
         DB::table('users')->insert([
             'name' => 'João Vitor',
             'email' => 'ribeiro.alexandre@escolar.ifrn.edu.br',

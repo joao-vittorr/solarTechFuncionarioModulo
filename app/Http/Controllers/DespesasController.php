@@ -10,12 +10,26 @@ use App\Models\Despesas;
 class DespesasController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         Despesas::factory(5)->create();
-        $despesas = Despesas::all();
+    
+        $query = Despesas::query();
+    
+        $categoria = $request->input('categoria');
+    
+        if ($categoria) {
+            $query->whereHas('categoria', function ($query) use ($categoria) {
+                $query->where('nome', 'like', '%' . $categoria . '%');
+            });
+        }
+    
+        $despesas = $query->with('categoria')->orderBy('created_at', 'desc')->paginate(10);
+    
         return view('despesas.index', compact('despesas'));
-    }
+    }   
+    
+    
 
     public function store(Request $request)
     {

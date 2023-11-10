@@ -34,7 +34,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="{{ route('despesas.index') }}">Gerenciar Despesas</a></li>
-              <li><a class="dropdown-item" href="pages/forms/advanced.html">Gerenciar Estoque</a></li>
+              <li><a class="dropdown-item" href="{{ route('')}}">Gerenciar Estoque</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -69,10 +69,10 @@
           </a>
         </li>
         </ul>
-        <form class="d-flex mt-3" role="search">
+        <!-- <form class="d-flex mt-3" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-success" type="submit">Search</button>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
