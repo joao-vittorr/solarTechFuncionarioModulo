@@ -5,25 +5,39 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Venda;
+use App\Models\PlacaSolar;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Pacotes;
-
+use Illuminate\Http\JsonResponse;
 
 class VendaController extends Controller
 {
-    public function ReceberDados (Request $request)
-    {  
+    public function ReceberDados(Request $request)
+    {
         $dados_recebidos = $request->all();
-        
-        $venda = new Venda();
-        $venda -> nomePacote = $dados_recebidos['pacote']['nomePacote'];
-        $venda -> quantidadePlacas = $dados_recebidos['pacote']['quantidadePlacas'];
-        $venda -> valorFinal = $dados_recebidos['pacote']['valorFinal'];
-        $venda -> users_id = $dados_recebidos['usuario']['id'];
-        
-        $venda -> save();
 
-        return response()->json(['message' => 'True']);
+        // Obter a quantidade de placas solares disponíveis
+        $placasDisponiveis = PlacaSolar::first();
+
+        // Verificar se há placas solares suficientes para a venda
+        if ($placasDisponiveis && $placasDisponiveis->quantidade >= $dados_recebidos['pacote']['quantidadePlacas']) {
+            // Atualizar a quantidade de placas solares disponíveis após a venda
+            $placasDisponiveis->quantidade -= $dados_recebidos['pacote']['quantidadePlacas'];
+            $placasDisponiveis->save();
+
+            // Registrar a venda
+            $venda = new Venda();
+            $venda->nomePacote = $dados_recebidos['pacote']['nomePacote'];
+            $venda->quantidadePlacas = $dados_recebidos['pacote']['quantidadePlacas'];
+            $venda->valorFinal = $dados_recebidos['pacote']['valorFinal'];
+            $venda->users_id = $dados_recebidos['usuario']['id'];
+            $venda->save();
+
+            return response()->json(['message' => 'True']);
+        } else {
+            return response()->json(['message' => 'False']);
+        }
     }
 
     public function vendas(Request $request)
@@ -52,14 +66,6 @@ class VendaController extends Controller
         ]);
     }    
     
-    // public function vendas() //retorna na view as vendas
-    // {
-    //     // Buscar todas as vendas com os dados dos usuários associados
-    //     $dadosVendas = Venda::with('user')->get();
-
-    //     return view('vendas', ['dadosVendas' => $dadosVendas]);
-    // }
-
     public function editarVenda(Request $request, $id)
     {
         $venda = Venda::find($id);
@@ -93,6 +99,27 @@ class VendaController extends Controller
     public function obterTotal() {
         $totalVendas = Venda::sum('valorFinal');        
         return response()->json(["totalVendas" => $totalVendas]);
+    }
+
+    public function comprasCliente(Request $request): JsonResponse
+    {
+        // Obter o ID do usuário logado
+        $userId = Auth::id();
+
+        $tipoPacote = $request->input('tipoPacote');
+
+        $query = Venda::with('user')->where('users_id', $userId)->orderBy('created_at', 'desc');
+
+        if ($tipoPacote) {
+            $query->where('nomePacote', 'like', '%' . $tipoPacote . '%');
+        }
+
+        $dadosVendas = $query->paginate(10);
+
+        return response()->json([
+            'dadosVendas' => $dadosVendas,
+            'tipoPacote' => $tipoPacote,
+        ]);
     }
 
 }

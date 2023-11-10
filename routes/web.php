@@ -54,6 +54,7 @@ Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('v
 Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 
 
+
 Route::get('/despesas/{despesa}', [DespesasController::class, 'edit'])->name('despesas.edit');
 Route::get('/despesas/create', [DespesasController::class, 'create'])->name('despesas.create');
 Route::get('/despesas', [DespesasController::class, 'index'])->name('despesas.index');

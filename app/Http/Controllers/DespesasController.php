@@ -12,7 +12,7 @@ class DespesasController extends Controller
 
     public function index(Request $request)
     {
-        //Despesas::factory(5)->create();
+        //Despesas::factory(20)->create();
     
         $query = Despesas::query();
     

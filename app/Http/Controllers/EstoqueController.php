@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Estoque;
 use Illuminate\Http\Request;
+use App\Models\PlacaSolar;
 
 class EstoqueController extends Controller
 {
     public function index()
     {
-        //Estoque::factory(5)->create();
+        //Estoque::factory(20)->create();
     
         $estoques = Estoque::orderBy('data_compra', 'desc')->paginate(10);
     
@@ -28,7 +29,19 @@ class EstoqueController extends Controller
 
         $data['user_id'] = auth()->user()->id;
 
-        Estoque::create($data);
+        // Criar registro no estoque
+        $estoque = Estoque::create($data);
+
+        // Atualizar a quantidade de placas solares disponíveis
+        $placasSolares = PlacaSolar::first();
+
+        if ($placasSolares) {
+            $placasSolares->quantidade += $request->input('quantidade');
+            $placasSolares->save();
+        } else {
+            // Se não houver registro de PlacaSolar, você pode criar um novo
+            PlacaSolar::create(['quantidade' => $request->input('quantidade')]);
+        }
 
         return redirect()->route('estoque.index')->with('success', 'Estoque criado com sucesso!');
     }
