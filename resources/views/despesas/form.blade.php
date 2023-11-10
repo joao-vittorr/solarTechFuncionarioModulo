@@ -42,6 +42,15 @@
                     </div>
                 </div>
 
+                <a href="{{ route('categorias.create') }}" class="btn btn-primary">Criar Nova Categoria</a>
+                <button type="submit" class="btn btn-primary">Salvar Despesa</button>
+    
+                <a class='btn btn-secondary' href="{{ route('despesas.create') }}">
+                    Cadastrar Nova Despesa
+                </a>
+                <a class='btn btn-secondary' href="{{ route('despesas.index') }}">
+                    Voltar
+                </a>
 
                 <!-- @if ($despesa && $despesa->id) -->
             </form>
@@ -51,14 +60,5 @@
                 <button type="submit" class="btn btn-danger">Deletar</button>
             </form>
             @endif-->
-            <a href="{{ route('categorias.create') }}" class="btn btn-primary">Criar Nova Categoria</a>
-            <button type="submit" class="btn btn-primary">Salvar Despesa</button>
-
-            <a class='btn btn-secondary' href="{{ route('despesas.create') }}">
-                Cadastrar Nova Despesa
-            </a>
-            <a class='btn btn-secondary' href="{{ route('despesas.index') }}">
-                Voltar
-            </a>
             @endsection
         </div>
