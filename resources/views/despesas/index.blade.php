@@ -12,14 +12,15 @@
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
     </form>
-    <div class="row row-cols-1 row-cols-md-2 g-4card-group">
+    <div class="row row-cols-1 row-cols-md-3 g-4card-group">
         @foreach ($despesas as $despesa)
         <div class="col">
             <div class="card mt-1">
                 <div class="card-body">
-                    <h5 class="card-title">Despesa: {{ $despesa->descricao }}, Valor: R$ {{ number_format($despesa->valor, 2, ',', '.') }}</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Data: {{ date('d/m/Y', strtotime($despesa->data_despesa)) }}</h6>
-                    <p class="card-text">Categoria: {{ $despesa->categoria->nome }}</p>
+                    <h5 class="card-title">Despesa: {{ $despesa->descricao }}</h5> 
+                    <h5>R$ {{ number_format($despesa->valor, 2, ',', '.') }}</h5>
+                    <h6 class=" mb-2 text-body">Categoria: {{ $despesa->categoria->nome }}</h6>
+                    <p class="card-text">Data: {{ date('d/m/Y', strtotime($despesa->data_despesa)) }}</p>
                     <div class="btn-group">
                         <a href="{{route("despesas.edit",$despesa)}}" class="btn btn-block btn-info">
                             Editar

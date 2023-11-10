@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <h1>Usuários que solicitaram visita técnica</h1>
 
-  <div class="row row-cols-1 row-cols-md-2 g-4card-group">
+  <div class="row row-cols-1 row-cols-md-3 g-4card-group">
     @foreach($usuariosComVisitas as $visita)
     <div class="col">
       <div class="card mt-1">

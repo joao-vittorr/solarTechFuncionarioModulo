@@ -8,7 +8,7 @@
     <input type="text" name="cpfUsuario" placeholder="CPF do Usuário" value="{{ $cpfUsuario ?? '' }}">
     <button type="submit">Buscar</button>
   </form>
-  <div class="row row-cols-1 row-cols-md-2 g-4card-group">
+  <div class="row row-cols-1 row-cols-md-3 g-4card-group">
     @foreach($dadosVendas as $venda)
     <div class="col">
       <div class="card mt-1">

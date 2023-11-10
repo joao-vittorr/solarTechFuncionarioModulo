@@ -6,14 +6,14 @@
   <a href="{{route('estoque.create')}}" class="btn btn-block btn-info">
     Criar Novo Estoque
   </a>
-  <div class="row row-cols-1 row-cols-md-2 g-4card-group">
+  <div class="row row-cols-1 row-cols-md-3 g-4card-group">
     @foreach($estoques as $produto)
     <div class="col">
       <div class="card mt-1">
         <div class="card-body">
           <h5 class="card-title">Descrição: {{ $produto->descricao }}</h5>
-          <h6>Quantidade: {{ $produto->quantidade }}, {{ date('d/m/Y', strtotime($produto->data_compra)) }}</h6>
-          <p class="card-text">Valor total: R$ {{ number_format($produto->valor, 2, ',', '.') }}</p>
+          <h6 class=" mb-2 text-body">Quantidade: {{ $produto->quantidade }}, Valor total: R$ {{ number_format($produto->valor, 2, ',', '.') }}</h6>
+          <p class="card-text">Data: {{ date('d/m/Y', strtotime($produto->data_compra)) }}</p>
           <div class="btn-group">
             <a href="{{route("estoque.edit", $produto->id)}}" class="btn btn-block btn-info">
               Editar

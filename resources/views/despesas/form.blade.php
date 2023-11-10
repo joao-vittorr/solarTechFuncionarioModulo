@@ -13,7 +13,7 @@
                 @endif
                 <div class="row">
                     @csrf
-                    <div class="mb-3 col-12">
+                    <div class=" col-12">
                         <label for="descricao" class="form-label">Descrição da Despesa</label>
                         <textarea class="form-control" name="descricao" id="descricao" required rows="3">{{ old('descricao', optional($despesa)->descricao) }}</textarea>
                     </div>
@@ -52,8 +52,8 @@
                     Voltar
                 </a>
 
-                <!-- @if ($despesa && $despesa->id) -->
             </form>
+            <!-- @if ($despesa && $despesa->id) -->
             <!-- <form method="POST" action="{{ route('despesas.destroy', ['id' => $despesa->id]) }}">
                 @csrf
                 @method('DELETE')
