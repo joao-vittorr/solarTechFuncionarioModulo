@@ -12,7 +12,7 @@ class DespesasController extends Controller
 
     public function index(Request $request)
     {
-        Despesas::factory(5)->create();
+        //Despesas::factory(5)->create();
     
         $query = Despesas::query();
     
@@ -24,7 +24,7 @@ class DespesasController extends Controller
             });
         }
     
-        $despesas = $query->with('categoria')->orderBy('created_at', 'desc')->paginate(10);
+        $despesas = $query->with('categoria')->orderBy('data_despesa', 'desc')->paginate(10);
     
         return view('despesas.index', compact('despesas'));
     }   
@@ -33,6 +33,7 @@ class DespesasController extends Controller
 
     public function store(Request $request)
     {
+
         $user_id = auth()->user()->id;
         $data_despesa = date('Y-m-d', strtotime($request->input('data_despesa')));
         Despesas::create([
@@ -69,7 +70,7 @@ class DespesasController extends Controller
         $despesa->valor = $request->input('valor');
         $despesa->descricao = $request->input('descricao');
         $despesa->data_despesa = $request->input('data_despesa');
-        $despesa->categoria_id = $request->input('categoria_id');
+        $despesa->categoria_id = $request->input('categoria');
         $despesa->save();
         
         return redirect()->route('despesas.index')->with('success', 'Despesa atualizada com sucesso.');

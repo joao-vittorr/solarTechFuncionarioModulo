@@ -1,13 +1,16 @@
 @extends('layouts.template')
 
 @section('content')
-
-
 <div class="container-fluid">
     <h1>{{ __('Expenses') }}</h1>
-    <form action="{{ route('despesas.search') }}" method="GET">
-        <input type="text" name="categoria" placeholder="Buscar por categoria" value="{{ $categoria ?? '' }}">
-        <button type="submit">Buscar</button>
+    <a href="{{route('despesas.create')}}" class="btn btn-block btn-info">
+        Criar Nova Despesa
+    </a>
+    <form method="GET" action="{{ route('despesas.index') }}">
+        <div class="input-group">
+            <input type="text" name="categoria" placeholder="Buscar por categoria" value="{{ $categoria ?? '' }}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
     </form>
     <div class="row row-cols-1 row-cols-md-2 g-4card-group">
         @foreach ($despesas as $despesa)

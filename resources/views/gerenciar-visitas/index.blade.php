@@ -1,34 +1,26 @@
-@extends('layouts.template') 
+@extends('layouts.template')
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <br><br>
+<div class="container-fluid">
+  <h1>Usuários que solicitaram visita técnica</h1>
 
-      <h1>Usuários que solicitaram visita técnica</h1>
-      <!-- Main content -->
-      <div>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-12">
-
-
-              <ul>
-                @foreach($usuariosComVisitas as $visita)
-                <p>Detalhes: {{ $visita->detalhes }}</p>
-                <p>Data Agendada: {{ $visita->data_agendada }}</p>
-                <p>Usuário: {{ $visita->user->name }}</p> <!-- Acessando o nome do usuário via a relação -->
-                <!-- Outros detalhes que deseja exibir -->
-                @endforeach
-              </ul>
-
-            </div>
-          </div>
-          <!-- /.row -->
+  <div class="row row-cols-1 row-cols-md-2 g-4card-group">
+    @foreach($usuariosComVisitas as $visita)
+    <div class="col">
+      <div class="card mt-1">
+        <div class="card-body">
+          <h5 class="card-title">Nome do Usuário: {{ $visita->user->name }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">CPF: {{ $visita->user->cpf }}</h6>
+          <p class="card-text">Detalhes: {{ $visita->detalhes }}</p>
+          <p class="card-text">Data Agendada: {{ $visita->data_agendada }}</p>
         </div>
-        <!-- /.container-fluid -->
       </div>
-      <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
+    @endforeach
+  </div>
+  <!-- Pagination Links -->
+  <div class="d-flex justify-content-center mt-4 pagination">
+    {{ $usuariosComVisitas->links('components.pagination') }}
+  </div>
+</div>
 @endsection

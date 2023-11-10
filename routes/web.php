@@ -8,9 +8,10 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\VendaController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DespesasController;
+use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\VisitaTecnicaController;
 use App\Http\Controllers\CategoriasController;
-use App\Models\Categorias;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,7 @@ Route::delete('/despesas/{id}', [DespesasController::class, 'destroy'])->name('d
 Route::put('/despesas/{id}', [DespesasController::class, 'update'])->name('despesas.update');
 Route::post('/despesas', [DespesasController::class, 'store'])->name('despesas.store');
 
+
 Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
 Route::get('/categorias/{categoria}', [CategoriasController::class, 'edit'])->name('categorias.edit');
 Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');
@@ -73,11 +75,6 @@ Route::delete('/estoque/{id}', [EstoqueController::class, 'destroy'])->name('est
 Route::put('/estoque/{id}', [EstoqueController::class, 'update'])->name('estoque.update');
 Route::post('/estoque', [EstoqueController::class, 'store'])->name('estoque.store');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');;
-
-
 Route::middleware(['admin.access'])->group(function () {
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('gerenciar.funcionario');
     Route::put('/admin/users/{userId}/update-level', [AdminUserController::class, 'updateLevel'])->name('gerenciar.funcionario.updateLevel');
@@ -90,12 +87,10 @@ Route::middleware(['admin.access'])->group(function () {
 // Route::post('/visitas', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
 // Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('visitas.usuarios-com-visitas');
 
-Route::prefix('gerenciar-visitas')->group(function () {
-    Route::get('/', [VisitaTecnicaController::class, 'index'])->name('index');
-    Route::get('/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
-    Route::post('/', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
-    Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('index');
-});
+Route::get('/gerenciar-visitas/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
+Route::post('/gerenciar-visitas', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
+Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('index');
+
 
 
 

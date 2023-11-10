@@ -4,8 +4,6 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <br><br>
-
       <h1>Cadastro de visitas</h1>
       <!-- Main content -->
       <div>

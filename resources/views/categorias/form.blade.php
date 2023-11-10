@@ -24,7 +24,11 @@
         </div>
 
         <button type="submit" class="btn btn-primary">
-            {{ $categoria ? 'Atualizar Categoria' : 'Criar Categoria' }}
+            @if(Route::currentRouteName() === 'categorias.edit')
+            Atualizar Categoria
+            @else
+            Criar Categoria
+            @endif
         </button>
     </form>
 

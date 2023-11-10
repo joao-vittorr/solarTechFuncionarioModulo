@@ -1,8 +1,6 @@
 @extends('layouts.template')
 
 @section('content')
-<br><br>
-<!-- Main content -->
 <div class="container-fluid">
   <h1>Produtos vendidos</h1>
   <form action="{{ route('venda.mostrar') }}" method="GET">

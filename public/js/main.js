@@ -29,6 +29,7 @@ logoutLink.addEventListener('click', (e) => {
       .then((response) => {
         if (response.ok) {
           window.location.href = '/';
+          window.location.replace("/");
         } else {
           console.error('Erro ao fazer logout');
         }

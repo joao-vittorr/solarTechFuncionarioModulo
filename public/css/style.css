@@ -2,7 +2,7 @@
     display: grid;
     flex-direction: column;
     position: relative;
-    padding-bottom: 40px;
+    padding-bottom: 25px;
 }
 footer {
     color: white;

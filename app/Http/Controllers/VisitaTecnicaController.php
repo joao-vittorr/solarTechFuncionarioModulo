@@ -9,11 +9,6 @@ use App\Models\User;
 
 class VisitaTecnicaController extends Controller
 {
-    public function index()
-    {
-        $visitasTecnicas = VisitaTecnica::all();
-        return view('gerenciar-visitas.index', compact('visitasTecnicas'));
-    }
 
     public function create()
     {
@@ -42,9 +37,12 @@ class VisitaTecnicaController extends Controller
 
     public function usuariosComVisitasTecnicas()
     {
-        $usuariosComVisitas = VisitaTecnica::where('necessita_visita', true)->get();
-
+        $usuariosComVisitas = VisitaTecnica::where('necessita_visita', true)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+    
         return view('gerenciar-visitas.index', compact('usuariosComVisitas'));
     }
+    
     
 }

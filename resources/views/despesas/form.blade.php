@@ -2,10 +2,12 @@
 
 @section('content')
     @if ($despesa && $despesa->id)
+        <h1>Editar Despesa</h1>
         <form id="main" method="POST" action="{{ route('despesas.update', ['id' => $despesa->id]) }}"
             enctype="multipart/form-data">
             @method('PUT')
         @else
+            <h1>Criar Nova Despesa</h1>
             <form id="main" method="POST" action="{{ route('despesas.store') }}" enctype="multipart/form-data">
     @endif
 
@@ -34,7 +36,8 @@
         <select name="categoria" id="categoria" class="form-control" required>
             <option value="" selected>Selecione uma opção</option>
             @foreach ($categorias as $categoria)
-                <option value="{{ $categoria->id }}" {{ optional($despesa)->categoria_id === $categoria->id ? 'selected' : '' }}>
+                <option value="{{ $categoria['id'] }}"
+                    {{ optional($despesa)->categoria_id === $categoria->id ? 'selected' : '' }}>
                     {{ $categoria->nome }}
                 </option>
             @endforeach
@@ -48,7 +51,7 @@
         Cadastrar Nova Despesa
     </a>
 
-    
+
     </form>
 
     @if ($despesa && $despesa->id)
@@ -58,9 +61,8 @@
             <button type="submit" class="btn btn-danger">Deletar</button>
         </form>
     @endif
-    
+
     <a class='btn btn-secondary' href="{{ route('despesas.index') }}">
-       Voltar
+        Voltar
     </a>
-    
 @endsection
