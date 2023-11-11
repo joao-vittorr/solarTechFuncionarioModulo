@@ -15,5 +15,9 @@ class Venda extends Model
     {
         return $this->belongsTo(User::class, 'users_id');
     }
+    public function fatura()
+    {
+        return $this->hasOne(Fatura::class);
+    }
 }
 

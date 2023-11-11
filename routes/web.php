@@ -11,6 +11,7 @@ use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\VisitaTecnicaController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\FaturaController;
 
 
 /*
@@ -91,6 +92,15 @@ Route::middleware(['admin.access'])->group(function () {
 Route::get('/gerenciar-visitas/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
 Route::post('/gerenciar-visitas', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
 Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('index');
+
+
+// routes/web.php ou routes/api.php
+Route::get('/faturas', [FaturaController::class, 'index']);
+Route::get('/faturas/{id}', [FaturaController::class, 'show']);
+Route::put('/faturas/{id}', [FaturaController::class, 'update']);
+Route::put('/faturas/{id}/atualizar-pagamento', [FaturaController::class, 'atualizarPagamento']);
+Route::get('/cliente/faturas', [VendaController::class, 'faturasCliente']);
+
 
 
 

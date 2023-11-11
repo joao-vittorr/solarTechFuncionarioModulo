@@ -8,6 +8,7 @@ use App\Models\Venda;
 use App\Models\PlacaSolar;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Fatura;
 use App\Models\Pacotes;
 use Illuminate\Http\JsonResponse;
 
@@ -34,6 +35,11 @@ class VendaController extends Controller
             $venda->users_id = $dados_recebidos['usuario']['id'];
             $venda->save();
 
+            // Cria a fatura da venda
+            $fatura = new Fatura();
+            $fatura->valor = $dados_recebidos['pacote']['valorFinal'];
+            $venda->fatura()->save($fatura);
+
             return response()->json(['message' => 'True']);
         } else {
             return response()->json(['message' => 'False']);
@@ -44,28 +50,28 @@ class VendaController extends Controller
     {
         $tipoPacote = $request->input('tipoPacote');
         $cpfUsuario = $request->input('cpfUsuario');
-    
+
         $query = Venda::with('user')->orderBy('created_at', 'desc');
-    
+
         if ($tipoPacote) {
             $query->where('nomePacote', 'like', '%' . $tipoPacote . '%');
         }
-    
+
         if ($cpfUsuario) {
             $query->whereHas('user', function ($query) use ($cpfUsuario) {
                 $query->where('cpf', 'like', '%' . $cpfUsuario . '%');
             });
         }
-    
+
         $dadosVendas = $query->paginate(10);
-    
+
         return view('vendas', [
             'dadosVendas' => $dadosVendas,
             'tipoPacote' => $tipoPacote,
             'cpfUsuario' => $cpfUsuario
         ]);
-    }    
-    
+    }
+
     public function editarVenda(Request $request, $id)
     {
         $venda = Venda::find($id);
@@ -77,7 +83,7 @@ class VendaController extends Controller
         $venda->nomePacote = $request->input('nomePacote');
         $venda->quantidadePlaca = $request->input('quantidadePlaca');
         $venda->valorFinal = $request->input('valorFinal');
-        
+
         $venda->save();
 
         return response()->json(['message' => 'Venda atualizada com sucesso', 'venda' => $venda]);
@@ -96,8 +102,9 @@ class VendaController extends Controller
         return redirect()->route('venda.mostrar')->with('success', 'Venda deletada com sucesso');
     }
 
-    public function obterTotal() {
-        $totalVendas = Venda::sum('valorFinal');        
+    public function obterTotal()
+    {
+        $totalVendas = Venda::sum('valorFinal');
         return response()->json(["totalVendas" => $totalVendas]);
     }
 
@@ -121,6 +128,14 @@ class VendaController extends Controller
             'tipoPacote' => $tipoPacote,
         ]);
     }
+    public function faturasCliente()
+    {
+        // Obtém o ID do usuário logado
+        $userId = auth()->id();
 
+        // Obtém as vendas associadas ao usuário com suas faturas
+        $vendas = Venda::with('fatura')->where('users_id', $userId)->get();
+
+        return view('cliente.faturas', ['vendas' => $vendas]);
+    }
 }
-
