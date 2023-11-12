@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Fatura;
 use App\Models\Pacotes;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+
 
 class VendaController extends Controller
 {
@@ -92,15 +94,49 @@ class VendaController extends Controller
     public function deletarVenda($id)
     {
         $venda = Venda::find($id);
-
+    
         if (!$venda) {
             return response()->json(['message' => 'Venda não encontrada'], 404);
         }
-
-        $venda->delete();
-
-        return redirect()->route('venda.mostrar')->with('success', 'Venda deletada com sucesso');
+    
+        // Begin a database transaction
+        DB::beginTransaction();
+    
+        try {
+            // Retrieve the associated invoice
+            $fatura = $venda->fatura;
+    
+            // Retrieve the quantity of solar panels in the sale
+            $quantidadePlacas = $venda->quantidadePlacas;
+    
+            // Delete the sale
+            $venda->delete();
+    
+            // Delete the associated invoice
+            if ($fatura) {
+                $fatura->delete();
+            }
+    
+            // Increment the quantity of solar panels in the solar panel table
+            $placasDisponiveis = PlacaSolar::first();
+            if ($placasDisponiveis) {
+                $placasDisponiveis->quantidade += $quantidadePlacas;
+                $placasDisponiveis->save();
+            }
+    
+            // Commit the transaction if everything is successful
+            DB::commit();
+    
+            return redirect()->route('venda.mostrar')->with('success', 'Venda deletada com sucesso');
+        } catch (\Exception $e) {
+            // An error occurred, rollback the transaction
+            DB::rollBack();
+    
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
+    
+    
 
     public function obterTotal()
     {

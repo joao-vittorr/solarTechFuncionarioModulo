@@ -13,17 +13,12 @@ return new class extends Migration
     {
         Schema::create('faturas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('venda_id')->constrained(); // Relacionamento com a tabela de vendas
+            $table->unsignedBigInteger('venda_id'); // Campo para armazenar o ID da venda
             $table->decimal('valor', 10, 2);
             $table->boolean('pago')->default(false);
             $table->timestamps();
         });
-    }
-    
-
-    /**
-     * Reverse the migrations.
-     */
+    } 
     public function down(): void
     {
         Schema::dropIfExists('faturas');
