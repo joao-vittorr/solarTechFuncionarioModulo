@@ -108,25 +108,10 @@ class VendaController extends Controller
         return response()->json(["totalVendas" => $totalVendas]);
     }
 
-    public function comprasCliente(Request $request): JsonResponse
+    public function comprasCliente(Request $request,$id): JsonResponse
     {
-        // Obter o ID do usuário logado
-        $userId = Auth::id();
-
-        $tipoPacote = $request->input('tipoPacote');
-
-        $query = Venda::with('user')->where('users_id', $userId)->orderBy('created_at', 'desc');
-
-        if ($tipoPacote) {
-            $query->where('nomePacote', 'like', '%' . $tipoPacote . '%');
-        }
-
-        $dadosVendas = $query->paginate(10);
-
-        return response()->json([
-            'dadosVendas' => $dadosVendas,
-            'tipoPacote' => $tipoPacote,
-        ]);
+        $dadosVendas = Venda::where('users_id',$id)->get();
+        return response()->json([$dadosVendas]);
     }
     public function faturasCliente()
     {
