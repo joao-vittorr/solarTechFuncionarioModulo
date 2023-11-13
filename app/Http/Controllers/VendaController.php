@@ -147,6 +147,7 @@ class VendaController extends Controller
         $dadosVendas = Venda::where('users_id',$id)->get();
         return response()->json([$dadosVendas]);
     }
+    
     public function faturaPorId($venda_id)
     {
         
