@@ -65,7 +65,7 @@ class VendaController extends Controller
             });
         }
 
-        $dadosVendas = $query->paginate(10);
+        $dadosVendas = $query->paginate(12);
 
         return view('vendas', [
             'dadosVendas' => $dadosVendas,

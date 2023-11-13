@@ -12,7 +12,6 @@ class DespesasController extends Controller
 
     public function index(Request $request)
     {
-        //Despesas::factory(20)->create();
     
         $query = Despesas::query();
     
@@ -24,7 +23,7 @@ class DespesasController extends Controller
             });
         }
     
-        $despesas = $query->with('categoria')->orderBy('data_despesa', 'desc')->paginate(10);
+        $despesas = $query->with('categoria')->orderBy('data_despesa', 'desc')->paginate(12);
     
         return view('despesas.index', compact('despesas'));
     }   

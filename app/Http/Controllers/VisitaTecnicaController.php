@@ -39,7 +39,7 @@ class VisitaTecnicaController extends Controller
     {
         $usuariosComVisitas = VisitaTecnica::where('necessita_visita', true)
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(12);
     
         return view('gerenciar-visitas.index', compact('usuariosComVisitas'));
     }

@@ -11,9 +11,8 @@ class EstoqueController extends Controller
 {
     public function index()
     {
-        //Estoque::factory(20)->create();
     
-        $estoques = Estoque::orderBy('data_compra', 'desc')->paginate(10);
+        $estoques = Estoque::orderBy('data_compra', 'desc')->paginate(12);
     
         return view('estoque.index', compact('estoques'));
     }    
