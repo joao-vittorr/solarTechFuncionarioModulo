@@ -135,8 +135,6 @@ class VendaController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-    
-    
 
     public function obterTotal()
     {
@@ -149,14 +147,19 @@ class VendaController extends Controller
         $dadosVendas = Venda::where('users_id',$id)->get();
         return response()->json([$dadosVendas]);
     }
-    public function faturasCliente()
+    public function faturaPorId($venda_id)
     {
-        // Obtém o ID do usuário logado
-        $userId = auth()->id();
+        
+        $venda = Venda::with('fatura')->find($venda_id);
+    
+        if (!$venda) {
 
-        // Obtém as vendas associadas ao usuário com suas faturas
-        $vendas = Venda::with('fatura')->where('users_id', $userId)->get();
+            return response()->json(['error' => 'Venda não encontrada.'], 404);
+        }
+    
 
-        return view('cliente.faturas', ['vendas' => $vendas]);
+        return response()->json(['venda' => $venda]);
     }
+    
+    
 }
