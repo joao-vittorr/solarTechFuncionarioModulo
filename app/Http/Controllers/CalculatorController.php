@@ -19,33 +19,28 @@ class CalculatorController extends Controller
             $response = [
                 'error' => 'Parâmetros inválidos. Certifique-se de que valorPacote e placasAdicionais sejam números válidos e não nulos.'
             ];
-            return response()->json($response, 400); // 400 é o código de status para requisição inválida
+            return response()->json($response, 400);
         }
     }
     
     public function Economy(Request $request){
         $precoKwh = 0.75;
-        $geracaoPlaca = 90; // reais por mês
+        $geracaoPlaca = 90;
         $RequestJson = $request->json()->all();
 
-        // Verifica se as variáveis necessárias estão presentes no JSON da requisição
         if (isset($RequestJson['quantidadePlacas'], $RequestJson['quantidadePlacasAdicionais'], $RequestJson['usoCliente'])) {
 
             $quantidadePlacas = $RequestJson['quantidadePlacas'];
             $quantidadePlacasAdicionais = $RequestJson['quantidadePlacasAdicionais'];
 
             if (is_numeric($quantidadePlacas) && is_numeric($quantidadePlacasAdicionais) && is_numeric($RequestJson['usoCliente'])) {
-                // Calcula a quantidade total de placas
                 $totalPlacas = $quantidadePlacas + $quantidadePlacasAdicionais;
 
-                // Calcula a geração total
                 $geracaoTotal = $totalPlacas * $geracaoPlaca;
 
-                // Calcula o uso total do cliente e a economia total
                 $usoTotalCliente = $RequestJson['usoCliente'] * $precoKwh;
                 $economiaTotal = $geracaoTotal - $usoTotalCliente;
 
-                // Retorna os resultados em formato JSON
                 return response()->json(["economiaTotal" => $economiaTotal, "custoUsoCliente" => $usoTotalCliente, "QuantoPlacaGera" => $geracaoTotal]);
             } else {
                 $response = [
@@ -62,20 +57,15 @@ class CalculatorController extends Controller
     }
 
     public function Investment(Request $request){
-        // Obter o consumo diário do cliente em kWh e o número de placas
-        $consumoDiario = $request->input('consumo_diario'); // Consumo diário em kWh
-        $numeroPlacas = $request->input('numero_placas'); // Número de placas solares
+        $consumoDiario = $request->input('consumo_diario');
+        $numeroPlacas = $request->input('numero_placas');
 
-        // Calcular a quantidade de kWh gerada por todas as placas por mês
-        $kwhGeradosPorMes = $numeroPlacas * 120; // 120 kWh por placa por mês
+        $kwhGeradosPorMes = $numeroPlacas * 120;
 
-        // Calcular o custo total das placas solares
-        $custoPlacas = $numeroPlacas * 1000; // 1000 R$ por placa
+        $custoPlacas = $numeroPlacas * 1000;
 
-        // Calcular o custo mensal do consumo do cliente
-        $custoMensal = $consumoDiario * 30 * 0.75; // 0.75 R$ por kWh
+        $custoMensal = $consumoDiario * 30 * 0.75;
 
-        // Calcular o tempo para recuperar o investimento em meses e arredondar para o inteiro mais próximo
         $tempoRecuperacaoMeses = round($custoPlacas / ($kwhGeradosPorMes - $consumoDiario * 30));
 
         return response()->json([

@@ -28,8 +28,6 @@ class DespesasController extends Controller
         return view('despesas.index', compact('despesas'));
     }   
     
-    
-
     public function store(Request $request)
     {
 

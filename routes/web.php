@@ -30,12 +30,6 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomePageController::class,"index"])->name('index');
-//Route::get('/dash', [DashboardController::class,"dash"])->name('dashboard');
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -49,8 +43,6 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleC
 Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard');
 
 Route::get('/vendas', [VendaController::class, 'vendas'])->name('venda.mostrar');
-//Route::get('/vendas/{id}/editar', [VendaController::class, 'editarVenda'])->name('venda.editar');
-//Route::put('/vendas/{id}', [VendaController::class, 'atualizarVenda'])->name('venda.atualizar');
 Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('venda.deletar');
 Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 
@@ -82,12 +74,6 @@ Route::middleware(['admin.access'])->group(function () {
     Route::put('/admin/users/{userId}/update-level', [AdminUserController::class, 'updateLevel'])->name('gerenciar.funcionario.updateLevel');
     Route::get('/admin/users/searchByCPF', [AdminUserController::class, 'searchByCPF'])->name('gerenciar.funcionario.searchByCPF');
 });
-
-
-// Route::get('/visitas', [VisitaTecnicaController::class, 'index'])->name('visitas');
-// Route::get('/visitas/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
-// Route::post('/visitas', [VisitaTecnicaController::class, 'store'])->name('visitas.store');
-// Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('visitas.usuarios-com-visitas');
 
 Route::get('/gerenciar-visitas/create', [VisitaTecnicaController::class, 'create'])->name('visitas.create');
 Route::post('/gerenciar-visitas', [VisitaTecnicaController::class, 'store'])->name('visitas.store');

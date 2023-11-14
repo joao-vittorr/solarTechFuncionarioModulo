@@ -22,7 +22,5 @@ class Clientes extends Model
         'cidade_clientes',
         'estado_clientes',
     ];
-
-    //implementar dps a logica do cep
     
 }

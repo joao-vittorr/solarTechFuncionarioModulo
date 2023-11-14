@@ -11,9 +11,7 @@ class EstoqueController extends Controller
 {
     public function index()
     {
-    
         $estoques = Estoque::orderBy('data_compra', 'desc')->paginate(12);
-    
         return view('estoque.index', compact('estoques'));
     }    
 
@@ -28,17 +26,14 @@ class EstoqueController extends Controller
 
         $data['user_id'] = auth()->user()->id;
 
-        // Criar registro no estoque
         $estoque = Estoque::create($data);
 
-        // Atualizar a quantidade de placas solares disponíveis
         $placasSolares = PlacaSolar::first();
 
         if ($placasSolares) {
             $placasSolares->quantidade += $request->input('quantidade');
             $placasSolares->save();
         } else {
-            // Se não houver registro de PlacaSolar, você pode criar um novo
             PlacaSolar::create(['quantidade' => $request->input('quantidade')]);
         }
 

@@ -22,7 +22,6 @@ class FaturaController extends Controller
         if (!$fatura) {
             return response()->json(['message' => 'Fatura não encontrada'], 404);
         }
-
         return response()->json(['fatura' => $fatura]);
     }
 
@@ -35,7 +34,6 @@ class FaturaController extends Controller
         }
 
         $fatura->update($request->all());
-
         return response()->json(['message' => 'Fatura atualizada com sucesso', 'fatura' => $fatura]);
     }
 
@@ -54,8 +52,6 @@ class FaturaController extends Controller
         if (!$fatura) {
             return response()->json(['message' => 'Fatura não encontrada'], 404);
         }
-
-        // Atualizar o status de pagamento da fatura
         $fatura->pago = $request->input('pago');
         $fatura->save();
 

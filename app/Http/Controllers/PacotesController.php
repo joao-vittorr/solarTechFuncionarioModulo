@@ -18,7 +18,6 @@ class PacotesController extends Controller
         if ($pacotes->isEmpty()) {
             return response()->json(['error' => 'Nenhum pacote encontrado'], 404); 
         }
-
         return response()->json(['data' => $pacotes]);
     }
 
@@ -30,13 +29,11 @@ class PacotesController extends Controller
             'quantidadePlacas' => 'required|integer',
             'valor' => 'required|integer',
         ]);
-
         Pacotes::create([
             'nome' => $request->input('nome'),
             'quantidadePlacas' => $request->input('quantidadePlacas'),
             'valor' => $request->input('valor'),
         ]);
-
         return response()->json(["resp" => "Operaçao Bem Sucedida !"]);
     }
 
@@ -74,10 +71,6 @@ class PacotesController extends Controller
     }
 
     public function finalizarCompra(Request $request){
-        //adicionar outro modal pra confirmar dados de endereço 
-        //ae recebe esse modal atualiza os dados e dps abre o modal de confirmar compra
-        //pra poder entrar aqui e enviar a compra 
-        
         $data = $request->all();
 
         $usuario = User::find($data["id_usuario"]);
@@ -96,7 +89,7 @@ class PacotesController extends Controller
 
         $sendToFinancial = [];
         $sendToFinancial["pacote"] = $dadosDoPacote;
-        $sendToFinancial["usuario"] = $dadosDoUsuario;//enviar pro outro modulo
+        $sendToFinancial["usuario"] = $dadosDoUsuario;
 
         
         dd($sendToFinancial);
