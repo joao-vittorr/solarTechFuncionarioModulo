@@ -1,26 +1,30 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="container-fluid">
-  <h1>Usuários que solicitaram visita técnica</h1>
+<div class="container">
+  <h1 class="mt-4">Usuários que solicitaram visita técnica</h1>
+  <p>Realize o gerenciamento de visitas técnicas.</p>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4card-group">
-    @foreach($usuariosComVisitas as $visita)
-    <div class="col">
-      <div class="card mt-1">
-        <div class="card-body">
-          <h5 class="card-title">Nome do Usuário: {{ $visita->user->name }}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">CPF: {{ $visita->user->cpf }}</h6>
-          <p class="card-text">Detalhes: {{ $visita->detalhes }}</p>
-          <p class="card-text">Data Agendada: {{ $visita->data_agendada }}</p>
-        </div>
+  @foreach($usuariosComVisitas as $visita)
+  <div class="row mb-3 text-center border border-2 rounded">
+    <div class="col-md-6 themed-grid-col">
+      <div class="pb-3">
+      <strong>Nome do Usuário: </strong>{{ $visita->user->name }}
+      </div>
+      <div class="row">
+        <div class="col-md-6 themed-grid-col border-top border-2"><strong>CPF: </strong>{{ $visita->user->cpf }}</div>
+        <div class="col-md-6 themed-grid-col border-top border-start border-2"><strong>Data Agendada: </strong>{{ $visita->data_agendada }}</div>
       </div>
     </div>
-    @endforeach
+    <div class="col-md-6 themed-grid-col border-start border-2"><strong>Detalhes: </strong>{{ $visita->detalhes }}</div>
   </div>
+  @endforeach
   <!-- Pagination Links -->
   <div class="d-flex justify-content-center mt-4 pagination">
     {{ $usuariosComVisitas->links('components.pagination') }}
   </div>
 </div>
+
+
+
 @endsection
