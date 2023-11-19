@@ -14,18 +14,19 @@ class DespesasController extends Controller
     {
     
         $query = Despesas::query();
-    
-        $categoria = $request->input('categoria');
-    
-        if ($categoria) {
-            $query->whereHas('categoria', function ($query) use ($categoria) {
-                $query->where('nome', 'like', '%' . $categoria . '%');
-            });
-        }
-    
+        $categorias = Categorias::all();
+        $categoriaSelecionada = $request->input('categoria');
+        
+        // Ajuste aqui: remova a atribuição a $despesas antes de definir as condições no $query
+        $query->when($categoriaSelecionada, function ($query) use ($categoriaSelecionada) {
+            $query->where('categoria_id', $categoriaSelecionada);
+        });
+        
+        // Ajuste aqui: use $query->paginate() em vez de $query->get()
         $despesas = $query->with('categoria')->orderBy('data_despesa', 'desc')->paginate(12);
-    
-        return view('despesas.index', compact('despesas'));
+        
+        return view('despesas.index', compact('despesas', 'categorias', 'categoriaSelecionada'));
+        
     }   
     
     public function store(Request $request)
