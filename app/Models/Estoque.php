@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Estoque extends Model
 {
     use HasFactory;
-    protected $fillable = ['valor_estoque', 'descricao_estoque', 'data_compra', 'quantidade_estoque','user_id'];
+    
+    protected $fillable = ['valor_estoque', 'descricao_estoque', 'data_compra', 'quantidade_estoque', 'user_id'];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

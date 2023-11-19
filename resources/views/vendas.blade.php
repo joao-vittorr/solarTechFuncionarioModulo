@@ -1,29 +1,31 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="container-fluid">
-  <h1>Produtos vendidos</h1>
+<div class="container">
+  <h1 class="mt-4">Produtos vendidos</h1>
+  <p>
   <form action="{{ route('venda.mostrar') }}" method="GET">
     <input type="text" name="tipoPacote" placeholder="Tipo de Pacote" value="{{ $tipoPacote ?? '' }}">
     <input type="text" name="cpfUsuario" placeholder="CPF do Usuário" value="{{ $cpfUsuario ?? '' }}">
     <button type="submit">Buscar</button>
   </form>
-  <div class="row row-cols-1 row-cols-md-3 g-4card-group">
-    @foreach($dadosVendas as $venda)
-    <div class="col">
-      <div class="card mt-1">
-        <div class="card-body">
-          <h5 class="card-title">Nome do Usuário: {{ $venda->user->name }}</h5>
-          <p>CPF: {{ $venda->user->cpf }}</p>
-          <h6 class="card-subtitle mb-2 text-body-secondary">Pacote escolhido: {{ $venda->nomePacote }}</h6>
-          <p class="card-text">Quantidade de placas: {{ $venda->quantidadePlacas }} - Valor total: R$ {{ $venda->valorFinal }}</p>
-          <a href="#" class="card-link">
-            <form method="POST" action="{{ route('venda.deletar', ['id' => $venda->id]) }}">
-              @csrf
-              @method('DELETE')
-              <button type="submit">Deletar</button>
-            </form>
-          </a>
+  </p>
+  @foreach($dadosVendas as $venda)
+  <br />
+  <div class="row mb-3 text-center border border-2 rounded">
+    <div class="pb-1 col-md-6 themed-grid-col">
+      <p><strong>Nome do Usuário: </strong>{{ $venda->user->name }}</p>
+      <p><strong>CPF: </strong>{{ $venda->user->cpf }}</p>
+    </div>
+    <div class="col-md-6 themed-grid-col">
+      <div class="row">
+        <div class="p-1 col-md-6 themed-grid-col">
+          <strong>Pacote escolhido: </strong>{{ $venda->nomePacote }}
+        </div>
+        <div class="p-1 col-md-6 themed-grid-col">
+          <strong>Quantidade de placas: </strong>{{ $venda->quantidadePlacas }} - Valor total: R$ {{ $venda->valorFinal }}
+        </div>
+        <div class="p-1 col-md-6 themed-grid-col">
           <a href="#" class="card-link">
             <form method="GET" action="{{ route('pdf.index', ['id' => $venda->id]) }}">
               @csrf
@@ -31,10 +33,17 @@
             </form>
           </a>
         </div>
+        <div class="p-1 col-md-6 themed-grid-col">
+          <form method="POST" action="{{ route('venda.deletar', ['id' => $venda->id]) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger w-100">Deletar</button>
+          </form>
+        </div>
       </div>
     </div>
-    @endforeach
   </div>
+  @endforeach
   <!-- Pagination Links -->
   <div class="d-flex justify-content-center mt-4 pagination">
     {{ $dadosVendas->links('components.pagination') }}

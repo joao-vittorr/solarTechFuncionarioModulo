@@ -13,7 +13,7 @@ class EstoqueController extends Controller
     {
         $estoques = Estoque::orderBy('data_compra', 'desc')->paginate(12);
         return view('estoque.index', compact('estoques'));
-    }    
+    }
 
     public function store(Request $request)
     {
@@ -25,7 +25,6 @@ class EstoqueController extends Controller
         ]);
 
         $data['user_id'] = auth()->user()->id;
-
         $estoque = Estoque::create($data);
 
         $placasSolares = PlacaSolar::first();
@@ -39,6 +38,8 @@ class EstoqueController extends Controller
 
         return redirect()->route('estoque.index')->with('success', 'Estoque criado com sucesso!');
     }
+
+
 
     public function edit($id)
     {
