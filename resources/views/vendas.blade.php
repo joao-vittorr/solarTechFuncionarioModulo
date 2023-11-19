@@ -23,7 +23,7 @@
           <strong>Pacote escolhido: </strong>{{ $venda->nomePacote }}
         </div>
         <div class="p-1 col-md-6 themed-grid-col">
-          <strong>Quantidade de placas: </strong>{{ $venda->quantidadePlacas }} - Valor total: R$ {{ $venda->valorFinal }}
+          <strong>Quantidade de placas: </strong>{{ $venda->quantidadePlacas }} - Valor total: R$ {{ number_format($venda->valorFinal, 2, ',', '.') }}
         </div>
         <div class="p-1 col-md-6 themed-grid-col">
           <a href="#" class="card-link">
