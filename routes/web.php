@@ -12,7 +12,7 @@ use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\VisitaTecnicaController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\FaturaController;
-
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +46,8 @@ Route::get('/vendas', [VendaController::class, 'vendas'])->name('venda.mostrar')
 Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('venda.deletar');
 Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 
+Route::get('/fatura/pdf/{id}/create', [PDFController::class, 'generatePDF'])->name('gerarPDF');
+Route::get('/fatura/pdf/{id}', [PDFController::class, 'index'])->name('pdf.index');
 
 
 Route::get('/despesas/{despesa}', [DespesasController::class, 'edit'])->name('despesas.edit');

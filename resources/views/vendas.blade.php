@@ -24,6 +24,12 @@
               <button type="submit">Deletar</button>
             </form>
           </a>
+          <a href="#" class="card-link">
+            <form method="GET" action="{{ route('pdf.index', ['id' => $venda->id]) }}">
+              @csrf
+              <button type="submit">Visualizar PDF</button>
+            </form>
+          </a>
         </div>
       </div>
     </div>
