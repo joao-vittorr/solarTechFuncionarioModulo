@@ -17,13 +17,29 @@ class PDFController extends Controller
         $invoice = Venda::find($id);
         $user = $invoice->user;
         $pdf = new Dompdf();
-        $pdf->loadHtml(view('fatura.pdf', compact('invoice','user'))->render());
 
+        // Criar um objeto Options
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $options->set('isRemoteEnable', true);
+
+        $pdf = new Dompdf($options);
+
+        // Renderizar o conteúdo da visão em HTML
+        $html = view('fatura.pdf', compact('invoice', 'user'))->render();
+        
+        // Carregar o HTML no objeto Dompdf
+        $pdf->loadHtml($html);
+        
+        // (opcional) Configurar o tamanho do papel e a orientação
         $pdf->setPaper('A4', 'portrait');
-
+        
+        // Renderizar o PDF
         $pdf->render();
-
-        return $pdf->stream('fatura.pdf');
+        
+        // Enviar o PDF para o navegador (stream)
+        $pdf->stream('fatura.pdf');
     }
 
     public function index($id)
@@ -31,6 +47,5 @@ class PDFController extends Controller
         $invoice = Venda::find($id);
         $user = $invoice->user;
         return view('fatura.pdf', compact('invoice', 'user'));
-    }  
-
+    }
 }
