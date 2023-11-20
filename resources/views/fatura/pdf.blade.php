@@ -107,8 +107,7 @@
             </div>
         </div>
     </div>
-    <a href="{{ route('gerarPDF', ['id' => $invoice->id])}}" class="card-link">Gerar PDF</a>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEX/ndQFK4d5dI6FfO1qQ5gRVVEhfbI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-eU7ucRRXC6viV6i3Uqwe5Qb3a6P/6ucSMFkYfG/kb9pG0ehG6L8kceZ5nAiN" crossorigin="anonymous"></script>
 </body>

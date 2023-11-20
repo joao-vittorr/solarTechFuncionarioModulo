@@ -67,7 +67,7 @@ $('.visualizar-pdf').on('click', function () {
           <div class="col-md-12">
               <div class="row">
                   <div class="col-md-4">
-                      <img class="img-fluid" alt="Logo" src="{{ asset('images/logoProjetoSolarTech.png') }}" />
+                    <img class="img-fluid" alt="Logo" src="${window.location.origin}/images/logoProjetoSolarTech.png" />
                   </div>
                   <div class="col-md-8 text-right">
                       <h4 style="color: #242424;"><strong>${nome}</strong></h4>
