@@ -42,4 +42,9 @@ logoutLink.addEventListener('click', (e) => {
   }
 });
 
-
+$('.card-link').on('click', function () {
+  var vendaId = $(this).data('id');
+  console.log(vendaId);
+  $('#myModal').find('.modal-body').load('pdf.index' + vendaId);
+  // O exemplo acima assume que você tem uma rota que retorna o conteúdo HTML da sua view específica.
+});
