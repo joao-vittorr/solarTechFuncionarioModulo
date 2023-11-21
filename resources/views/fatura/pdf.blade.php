@@ -4,112 +4,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/pdf.css') }}">
     <title>Fatura - Nº {{ $invoice->id }}</title>
+    <style>
+            .invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
+
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
+
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.invoice-box table tr.information table td {
+				padding-bottom: 40px;
+			}
+
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+			}
+
+			/** RTL **/
+			.invoice-box.rtl {
+				direction: rtl;
+				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			}
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+    </style>
 </head>
+
 
 <body>
 
-    <div class="container">
+        <div class="invoice-box">
+			<table cellpadding="0" cellspacing="0">
+				<tr class="top">
+					<td colspan="4">
+						<table>
+							<tr>
+								<td class="title">
+									<img
+										src="{{ asset('images/logoProjetoSolarTech.png') }}"
+										style="width: 100%; max-width: 300px"
+									/>
+								</td>
 
-        <div class="page-header">
-            <h1>Fatura #{{ $invoice->id }} </h1>
-        </div>
+								<td>
+									<b>Fatura #: {{ $invoice['id'] }}</b><br />
+									Data:{{ date('d/m/Y', strtotime($invoice->created_at)) }}<br />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 body-main">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-4">
-                            <img class="img" alt="Logo" src="public/images/logoProjetoSolarTech.png" />
-                            </div>
-                            <div class="col-md-8 text-right">
-                                <h4 style="color: #242424;"><strong>{{ $user->name }}</strong></h4>
-                                <h5 style="color: #242424;"><strong>CPF: {{ $user->cpf }}</strong></h5>
-                                <p>{{ $user->logradouro }}, {{ $user->numero_casa }}</p>
-                                <p>{{ $user->bairro }}, {{ $user->cidade }}/{{ $user->estado }}</p>
-                                <p>{{ $user->email }}</p>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h2>Fatura</h2>
-                                <h5>#{{ $invoice->id }}</h5>
-                            </div>
-                        </div>
-                        <br />
-                        <div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <h5>Descrição</h5>
-                                        </th>
-                                        <th>
-                                            <h5>Quantidade</h5>
-                                        </th>
-                                        <th>
-                                            <h5>Valor</h5>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="col-md-9">Pacote</td>
-                                        <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> {{$invoice->quantidadePlacas}} </td>
-                                        <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i>R$ {{ number_format($invoice->valorFinal, 2, ',', '.') }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right">
-                                            <p>
-                                                <strong>Resumo</strong>
-                                            </p>
-                                            <p>
-                                                <strong>Subtotal: </strong>
-                                            </p>
-                                            <p>
-                                                <strong>Valor Total: </strong>
-                                            </p>
-                                        </td>
-                                        <td>
-                                            <p>
-                                                <strong><i class="fas fa-rupee-sign" area-hidden="true"></i></strong>
-                                            </p>
-                                            <p>
-                                                <strong><i class="fas fa-rupee-sign" area-hidden="true"></i> {{$invoice->quantidadePlacas}}</strong>
-                                            </p>
-                                            <p>
-                                                <strong><i class="fas fa-rupee-sign" area-hidden="true"></i>R$ {{ number_format($invoice->valorFinal, 2, ',', '.') }} </strong>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    <tr style="color: #272727;">
-                                        <td class="text-right">
-                                            <h4><strong>Total:</strong></h4>
-                                        </td>
-                                        <td class="text-left">
-                                            <h4><strong><i class="fas fa-rupee-sign" area-hidden="true"></i> R$ {{ number_format($invoice->valorFinal, 2, ',', '.') }}</strong></h4>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <div class="col-md-12">
-                                <p><b>Data da Compra :</b> {{ date('d/m/Y', strtotime($invoice->created_at)) }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEX/ndQFK4d5dI6FfO1qQ5gRVVEhfbI" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-eU7ucRRXC6viV6i3Uqwe5Qb3a6P/6ucSMFkYfG/kb9pG0ehG6L8kceZ5nAiN" crossorigin="anonymous"></script>
+				<tr class="information">
+					<td colspan="4">
+						<table>
+							<tr>
+								<td>
+									<h2>{{ $invoice->user->name }}</h2><br />
+									{{ $invoice->user->cpf }}<br />
+                                    {{ $invoice->user->email }}<br />
+								</td>
+								<td>
+									Rua {{ $invoice->user->logradouro }}<br />
+									{{ $invoice->user->numero_casa }}<br />
+                                    {{ $invoice->user->bairro }}<br />
+                                    {{ $invoice->user->cidade }}/{{ $invoice->user->estado }}<br />
+                                    {{ $invoice->user->cep }}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Data</td>
+                    <td></td>
+                    <td></td>
+					<td>Status Pagamento</td>
+				</tr>
+
+				<tr class="details">
+					<td>Data</td>
+                    <td></td>
+                    <td></td>
+					<td>1000</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Produto</td>
+                    <td>Quantidade de Placas</td>
+                    <td></td>
+					<td>Valor</td>
+				</tr>
+
+				<tr class="item">
+					<td>{{ $invoice->nomePacote }}</td>
+                    <td>{{ $invoice->quantidadePlacas }}</td>
+                    <td></td>
+					<td>R$ {{ number_format($invoice->valorFinal, 2, ',', '.') }}</td>
+				</tr>
+
+				<tr class="total">
+					<td></td>
+                    <td></td>
+                    <td></td>
+					<td><h3> Total: R$ {{ number_format($invoice->valorFinal, 2, ',', '.') }}</h3></td>
+				</tr>
+			</table>
+		</div>
+
+      
+
 </body>
 
 </html>
