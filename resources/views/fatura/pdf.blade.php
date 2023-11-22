@@ -111,8 +111,8 @@
 							<tr>
 								<td class="title">
 									<img
-										src="$img"
-										style="width: 100%; max-width: 300px"
+										src="{{$img}}"
+										style="width: 100%; max-width: 200px"
 									/>
 								</td>
 
