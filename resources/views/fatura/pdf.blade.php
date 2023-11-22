@@ -111,7 +111,7 @@
 							<tr>
 								<td class="title">
 									<img
-										src="{{ asset('images/logoProjetoSolarTech.png') }}"
+										src="$img"
 										style="width: 100%; max-width: 300px"
 									/>
 								</td>
