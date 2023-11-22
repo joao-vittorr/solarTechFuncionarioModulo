@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     var totalVendas = data.totalVendas;
 
-    $(".vendas").text("R$ " + totalVendas);
+    $(".vendas").text("Valor total das vendas: R$ " + totalVendas);
   });
 });
 
