@@ -49,7 +49,6 @@ Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
 Route::get('/fatura/pdf/{id}/create', [PDFController::class, 'generatePDF'])->name('gerarPDF');
 Route::get('/fatura/pdf/{id}', [PDFController::class, 'index'])->name('pdf.index');
 
-
 Route::get('/despesas/{despesa}', [DespesasController::class, 'edit'])->name('despesas.edit');
 Route::get('/despesas/create', [DespesasController::class, 'create'])->name('despesas.create');
 Route::get('/despesas', [DespesasController::class, 'index'])->name('despesas.index');

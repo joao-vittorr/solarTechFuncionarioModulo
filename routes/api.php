@@ -23,4 +23,5 @@ Route::post('/receber-dados', [VendaController::class, 'ReceberDados']);
 Route::get('/compras-cliente/{id}', [VendaController::class, 'comprasCliente']);
 Route::get('/cliente/faturas/{id}', [VendaController::class, 'faturaPorId']);
 Route::delete('/compras-cliente/{id}', [VendaController::class, 'deletarVenda']);
+Route::get('/fatura/pdf/{id}/create', [PDFController::class, 'generatePDF']);
 
