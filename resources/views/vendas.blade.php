@@ -27,7 +27,7 @@
                             {{ number_format($venda->valorFinal, 2, ',', '.') }}
                         </div>
                         <div class="p-1 col-md-6 themed-grid-col">
-                            <a href="#" class="card-link btn btn-primary visualizar-pdf" data-toggle="modal"
+                            <a href="#" class="card-link btn btn-primary visualizar-pdf w-100" data-toggle="modal"
                                 data-target="#myModal" data-id="{{ $venda->id }}" data-nome="{{ $venda->user->name }}"
                                 data-cpf="{{ $venda->user->cpf }}" data-logradouro="{{ $venda->user->logradouro }}"
                                 data-numero-casa="{{ $venda->user->numero_casa }}"

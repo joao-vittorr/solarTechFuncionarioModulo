@@ -21,11 +21,9 @@ class PDFController extends Controller
         $options->set('isRemoteEnable', true);
 
         $pdf = new Dompdf($options);
+        $img = $this->dompdfImg('public/images/C-logoProjetoSolarTech.png');
 
-
-        $html = view('fatura.pdf', compact('invoice', 'user'));
-
-
+        $html = view('fatura.pdf', compact('invoice', 'user', 'img'));
 
         $pdf->loadHtml($html);
 
@@ -40,7 +38,7 @@ class PDFController extends Controller
     {
         $invoice = Venda::find($id);
         $user = $invoice->user;
-        $img = $this->dompdfImg('public/images/logoProjetoSolarTech.png');
+        $img = $this->dompdfImg('public/images/C-logoProjetoSolarTech.png');
 
         return view('fatura.pdf', compact('invoice', 'user', 'img'));
     }
