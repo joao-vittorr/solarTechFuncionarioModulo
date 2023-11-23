@@ -13,7 +13,7 @@ class PDFController extends Controller
     {
         $invoice = Venda::find($id);
         $user = $invoice->user;
-
+        $img = $this->dompdfImg('public/images/logoProjetoSolarTech.png');
 
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
@@ -42,6 +42,7 @@ class PDFController extends Controller
 
         return view('fatura.pdf', compact('invoice', 'user', 'img'));
     }
+
     private function dompdfImg($img)
     {
         return "data:image/svg+xml;base64," . base64_encode(file_get_contents(base_path($img)));
