@@ -4,10 +4,16 @@
 <div class="container">
     <h1 class="mt-4">Produtos vendidos</h1>
     <p>
-    <form action="{{ route('venda.mostrar') }}" method="GET">
-        <input type="text" name="tipoPacote" placeholder="Tipo de Pacote" value="{{ $tipoPacote ?? '' }}">
-        <input type="text" name="cpfUsuario" placeholder="CPF do Usuário" value="{{ $cpfUsuario ?? '' }}">
-        <button type="submit">Buscar</button>
+    <form action="{{ route('venda.mostrar') }}" method="GET" class="row g-3">
+        <div class="col-4">
+            <input type="text" name="tipoPacote" placeholder="Tipo de Pacote" value="{{ $tipoPacote ?? '' }}" class="form-control">
+        </div>
+        <div class="col-2">
+            <input type="text" name="cpfUsuario" placeholder="CPF do Usuário" value="{{ $cpfUsuario ?? '' }}" class="form-control">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
     </form>
     </p>
     @foreach ($dadosVendas as $venda)
