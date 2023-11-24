@@ -69,7 +69,10 @@ $('.visualizar-pdf').on('click', function () {
                         <div class="col-md-4">
                             <img class="img-fluid" alt="Logo" src="${window.location.origin}/images/logoProjetoSolarTech.png" />
                         </div>
-                        <div class="col-md-8 text-right">
+                        <div class="col-md-8 text-end">
+                            <div>
+                                <h2><b>Fatura </b>#${vendaId}</h2>
+                            </div>
                             <h4 style="color: #242424;"><strong>${nome}</strong></h4>
                             <h5 style="color: #242424;"><strong>CPF: ${cpf}</strong></h5>
                             <p>${logradouro}, ${numeroCasa}</p>
@@ -80,12 +83,6 @@ $('.visualizar-pdf').on('click', function () {
                         </div>
                     </div>
                     <br />
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <h2>Fatura</h2>
-                            <h5>#${vendaId}</h5>
-                        </div>
-                    </div>
                     <br />
                     <div>
                         <table class="table">

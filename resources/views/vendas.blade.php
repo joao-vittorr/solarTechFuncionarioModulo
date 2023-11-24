@@ -68,7 +68,10 @@
                                     <div class="col-md-4">
                                         <img class="img-fluid" alt="Logo" src={{ asset('images/logoProjetoSolarTech.png') }} />
                                     </div>
-                                    <div class="col-md-12 text-right">
+                                    <div class="col-md-8 text-end">
+                                        <div>
+                                            <h2><b>Fatura </b>#{{ $venda->id }}</h2>
+                                        </div>
                                         <h4 style="color: #242424;"><strong>{{ $venda->user->name }}</strong></h4>
                                         <h5 style="color: #242424;"><strong>CPF: {{ $venda->user->cpf }}</strong></h5>
                                         <p>{{ $venda->user->logradouro }}, {{ $venda->user->numero_casa }}</p>
@@ -80,10 +83,7 @@
                                 </div>
                                 <br />
                                 <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <h2>Fatura</h2>
-                                        <h5>#{{ $venda->id }}</h5>
-                                    </div>
+
                                 </div>
                                 <br />
                                 <div>
