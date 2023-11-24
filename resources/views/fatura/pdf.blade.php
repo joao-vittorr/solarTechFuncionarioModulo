@@ -112,7 +112,7 @@
 								<td class="title">
 									<img
 										src="{{ $img }}"
-										style="width: 100%; max-width: 50px"
+										style="width: 100%; max-width: 150px"
 									/>
 								</td>
 
