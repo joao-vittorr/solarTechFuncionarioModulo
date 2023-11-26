@@ -21,11 +21,6 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="{{ route('gerenciar.funcionario') }}">Tabela de Funcionários</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -35,11 +30,6 @@
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="{{ route('despesas.index') }}">Gerenciar Despesas</a></li>
               <li><a class="dropdown-item" href="{{route('estoque.index')}}">Gerenciar Estoque</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="pages/forms/editors.html">Editors</a></li>
-              <li><a class="dropdown-item" href="pages/forms/validation.html">Validation</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -49,10 +39,6 @@
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="{{ route('venda.mostrar') }}">Produtos vendidos</a></li>
               <li><a class="dropdown-item" href="{{ route('index') }}">Visitas Técnicas</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
           <li class="nav-item">

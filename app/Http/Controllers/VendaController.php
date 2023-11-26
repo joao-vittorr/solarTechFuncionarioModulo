@@ -74,23 +74,6 @@ class VendaController extends Controller
         ]);
     }
 
-    public function editarVenda(Request $request, $id)
-    {
-        $venda = Venda::find($id);
-
-        if (!$venda) {
-            return response()->json(['message' => 'Venda não encontrada'], 404);
-        }
-
-        $venda->nomePacote = $request->input('nomePacote');
-        $venda->quantidadePlaca = $request->input('quantidadePlaca');
-        $venda->valorFinal = $request->input('valorFinal');
-
-        $venda->save();
-
-        return response()->json(['message' => 'Venda atualizada com sucesso', 'venda' => $venda]);
-    }
-
     public function deletarVenda($id)
     {
         $venda = Venda::find($id);
@@ -99,39 +82,30 @@ class VendaController extends Controller
             return response()->json(['message' => 'Venda não encontrada'], 404);
         }
     
-        // Begin a database transaction
         DB::beginTransaction();
     
         try {
-            // Retrieve the associated invoice
             $fatura = $venda->fatura;
     
-            // Retrieve the quantity of solar panels in the sale
             $quantidadePlacas = $venda->quantidadePlacas;
     
-            // Delete the sale
             $venda->delete();
     
-            // Delete the associated invoice
             if ($fatura) {
                 $fatura->delete();
             }
     
-            // Increment the quantity of solar panels in the solar panel table
             $placasDisponiveis = PlacaSolar::first();
             if ($placasDisponiveis) {
                 $placasDisponiveis->quantidade += $quantidadePlacas;
                 $placasDisponiveis->save();
             }
     
-            // Commit the transaction if everything is successful
             DB::commit();
     
             return redirect()->route('venda.mostrar')->with('success', 'Venda deletada com sucesso');
         } catch (\Exception $e) {
-            // An error occurred, rollback the transaction
             DB::rollBack();
-    
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }

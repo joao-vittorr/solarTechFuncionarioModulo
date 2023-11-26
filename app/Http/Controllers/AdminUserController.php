@@ -28,7 +28,7 @@ class AdminUserController extends Controller
     public function searchByCPF(Request $request)
     {
         $cpf = $request->input('cpf');
-        $users = User::where('cpf', $cpf)->paginate(12); // Paginação com 10 itens por página
+        $users = User::where('cpf', $cpf)->paginate(12);
     
         return view('funcionario', ['users' => $users]);
     }

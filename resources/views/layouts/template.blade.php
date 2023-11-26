@@ -16,8 +16,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('css/dataTable.css') }}">
 </head>
 
 <body class="conf-body">
@@ -47,27 +45,17 @@
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <!-- DataTables -->
-    <script src="{{ asset('js/dataTable.js') }}"></script>
-    <script>
-        let table = new DataTable('#data-table', {
-            language: {
-                url: "{{ asset('lang/pt-br.json') }}",
-            },
-        });
-    </script>
-
     <script src="{{ asset('js/adminlte.js') }}"></script>
+
     <!-- OPTIONAL SCRIPTS -->
     <script src="{{ asset('js/Chart.min.js') }}"></script>
-
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('js/demo.js') }}"></script>
     {{-- Font icons --}}
     <script src="{{ asset('js/iconFontAwesome.js') }}"></script>
     <script src="{{ asset('js/ControlSidebar.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('js/dashboard3.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

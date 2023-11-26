@@ -1,23 +1,31 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="container-fluid">
-  <h1>Usuários do sistema</h1>
+
+<div class="container">
+  <h1 class="mt-4">Usuários do sistema</h1>
+  <p>
   <form method="GET" action="{{ route('gerenciar.funcionario.searchByCPF') }}" class="mb-3">
     <div class="input-group">
       <input type="text" name="cpf" placeholder="Buscar por CPF" class="form-control">
       <button type="submit" class="btn btn-primary">Buscar</button>
     </div>
   </form>
-  <div class="row row-cols-1 row-cols-md-2 g-4card-group">
-    @foreach($users as $user)
-    <div class="col">
-      <div class="card mt-1">
-        <div class="card-body">
-          <h5 class="card-title">Nome do Usuário: {{ $user->name }}</h5>
-          <p>CPF: {{ $user->cpf }}</p>
-          <h6 class="card-subtitle mb-2 text-body-secondary">Nível de acesso atual: {{ $user->access_level }}</h6>
-          <h6 class="card-subtitle mb-2 text-body-secondary">Selecione o nível de acesso: </h6>
+  </p>
+  @foreach($users as $user)
+  <br />
+  <div class="row mb-3 text-center border border-2 rounded">
+    <div class="pb-1 col-md-6 themed-grid-col">
+      <p><strong>Nome do Usuário: </strong>{{ $user->name }}</p>
+      <p><strong>CPF: </strong>{{ $user->cpf }}</p>
+    </div>
+    <div class="col-md-6 themed-grid-col">
+      <div class="row">
+        <div class="p-1 col-md-6 themed-grid-col">
+          <strong>Nível de acesso atual: </strong>{{ $user->access_level }}
+        </div>
+        <div class="p-1 col-md-6 themed-grid-col">
+          <strong>Selecione o novo nível de acesso: </strong>
           <form id="form-{{ $user->id }}" method="POST" action="{{ route('gerenciar.funcionario.updateLevel', $user->id) }}">
             @csrf
             @method('PUT')
@@ -32,8 +40,8 @@
         </div>
       </div>
     </div>
-    @endforeach
   </div>
+  @endforeach
   <!-- Pagination Links -->
   <div class="d-flex justify-content-center mt-4 pagination">
     {{ $users->links('components.pagination') }}

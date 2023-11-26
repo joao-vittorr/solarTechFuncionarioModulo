@@ -12,6 +12,4 @@ class PlacaSolarController extends Controller
         $placasSolares = PlacaSolar::all();
         return view('placas_solares.index', compact('placasSolares'));
     }
-
-    // Outros métodos do controlador para criar, atualizar, excluir, etc.
 }

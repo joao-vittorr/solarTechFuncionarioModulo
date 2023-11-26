@@ -22,23 +22,18 @@ class GoogleAuthController extends Controller
         $existingUser = User::where('sub', $user->getId())->first();
 
         if ($existingUser) {
-            // Usuário já existe, verificar e, se necessário, atualizar os dados
             if ($existingUser->name !== $user->getName() || $existingUser->email !== $user->getEmail()) {
-                // Atualizar os dados do usuário
                 $existingUser->name = $user->getName();
                 $existingUser->email = $user->getEmail();
                 $existingUser->save();
             }
-
-            // Faça o login do usuário
             Auth::login($existingUser);
         } else {
-            // Usuário não existe, registre-o no banco de dados
             $newUser = new User();
             $newUser->name = $user->getName();
             $newUser->email = $user->getEmail();
             $newUser->sub = $user->getId();
-            $newUser->access_level = 'cliente'; // Defina o access_level como "cliente" para novos usuários
+            $newUser->access_level = 'cliente';
 
             $newUser->save();
 

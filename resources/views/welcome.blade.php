@@ -39,7 +39,7 @@
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex justify-center">
-                <img src="{{ asset('images/logoProjetoSolarTechSemTexto.svg') }}" alt="" class="h-17 w-auto bg-gray-100 dark:bg-gray-900">
+                <img src="{{ asset('images/logoProjetoSolarTechSemTexto.svg') }}" alt="logo_svg" class="h-17 w-auto bg-gray-100 dark:bg-gray-900">
             </div>
 
             <div class="mt-16">

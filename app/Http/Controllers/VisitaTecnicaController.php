@@ -18,7 +18,7 @@ class VisitaTecnicaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id', // Garante que o user_id existe na tabela de usuários
+            'user_id' => 'required|exists:users,id',
             'detalhes' => 'required',
             'data_agendada' => 'required|date',
             'necessita_visita' => 'boolean',
