@@ -93,6 +93,27 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-6 mb-2">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="card-title">Vendas, Despesas e Lucro</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <p class="d-flex flex-column">
+                                <span>Vendas, Despesas e Lucro acumulado:</span>
+                            </p>
+                        </div>
+                        <!-- Gráfico de vendas, despesas e lucro -->
+                        <div class="position-relative mb-4">
+                            <canvas id="lucro-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -103,6 +124,10 @@
     var vendasPorMes = <?php echo json_encode($vendasPorMes); ?>;
     var mesesDisponiveis = <?php echo json_encode($mesesDisponiveis); ?>;
     var categoriasMaisVendidas = <?php echo json_encode($categoriasMaisVendidas); ?>;
+    var totalVendas = <?php echo json_encode($totalVendas); ?>;
+    var totalDespesas = <?php echo json_encode($totalDespesas); ?>;
+    var lucro = <?php echo json_encode($lucro); ?>;
+
 
     // Preencher os meses ausentes com zero
     for (var i = 0; i < mesesDisponiveis.length; i++) {
@@ -212,13 +237,72 @@
         }
     };
 
+    // Configuração do gráfico de vendas, despesas e lucro
+    var chartConfigLucro = {
+        type: 'bar',
+        data: {
+            labels: ['Vendas', 'Despesas', 'Lucro'],
+            datasets: [{
+                label: 'Valores',
+                data: [totalVendas, totalDespesas, lucro],
+                backgroundColor: ['rgba(0, 123, 255, 0.7)', 'rgba(255, 0, 0, 0.7)', 'rgba(0, 255, 0, 0.7)'],
+                barPercentage: 0.1,
+                borderWidth: 0.2
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            if (value % 1 === 0) {
+                                return value;
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            scales: {
+                x: {
+                    gridLines: {
+                        display: true,
+                        lineWidth: '4px',
+                        color: 'rgba(0, 0, 0, .2)',
+                        zeroLineColor: 'transparent'
+                    }
+                },
+                y: {
+                    display: true,
+                    gridLines: {
+                        display: false
+                    }
+                }
+            }
+        }
+    };
+
     // Espera o documento estar totalmente carregado
     document.addEventListener('DOMContentLoaded', function() {
         // Criar o gráfico de vendas após o carregamento do documento
         var salesChart = new Chart(document.getElementById('sales-chart'), chartConfigVendas);
-
         // Criar o gráfico de categorias após o carregamento do documento
         var chartCategorias = new Chart(document.getElementById('categorias-chart'), chartConfigCategorias);
+        // Criar o gráfico de vendas, despesas e lucro após o carregamento do documento
+        var lucroChart = new Chart(document.getElementById('lucro-chart'), chartConfigLucro);
     });
 </script>
 

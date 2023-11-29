@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venda;
+use App\Models\Despesas;
 use Illuminate\Support\Facades\View;
 use App\Models\Categorias;
 use Illuminate\Support\Facades\DB;
@@ -41,11 +42,19 @@ class DashboardController extends Controller
         // Obter os produtos mais recentes do estoque
         $produtosRecentes = Estoque::orderBy('data_compra', 'desc')->take(5)->get();
 
-
         // Obter todos os meses disponíveis
         $mesesDisponiveis = array_keys($vendasPorMes);
 
+        // Obter total de vendas
+        $totalVendas = Venda::sum('valorFinal');
+
+        // Obter total de despesas
+        $totalDespesas = Despesas::sum('valor');
+    
+        // Calcular o lucro
+        $lucro = $totalVendas - $totalDespesas;
+    
         // Passe os dados para a view
-        return view('dashboard.index', compact('vendasPorMes', 'mesesDisponiveis', 'produtosRecentes', 'categoriasMaisVendidas'));
+        return view('dashboard.index', compact('vendasPorMes', 'mesesDisponiveis', 'produtosRecentes', 'categoriasMaisVendidas', 'totalVendas', 'totalDespesas', 'lucro'));
     }
 }

@@ -81,4 +81,10 @@ class DespesasController extends Controller
 
         return redirect()->route('despesas.index')->with('success', 'Despesa excluída com sucesso.');
     }
+
+    public function obterDespesas()
+    {
+        $totalDespesas = Despesas::sum('valor');
+        return response()->json(["totalDespesas" => $totalDespesas]);
+    }
 }
