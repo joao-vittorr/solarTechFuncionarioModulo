@@ -7,12 +7,43 @@ use Illuminate\Http\Request;
 use App\Models\Fatura;
 use Illuminate\Support\Facades\Validator;
 
+
 class FaturaController extends Controller
 {
     public function index()
     {
         $faturas = Fatura::with('venda')->get();
         return response()->json(['faturas' => $faturas]);
+    }
+
+    public function indexview(Request $request)
+    {
+
+        $query = Fatura::with('venda.user')->orderBy('created_at', 'desc');
+
+        if ($request->filled('search_id')) {
+            $query->where('id', $request->input('search_id'));
+        }
+        if ($request->filled('search_cpf')) {
+            $query->whereHas('venda.user', function ($query) use ($request) {
+                $query->where('cpf', 'LIKE', "%{$request->input('search_cpf')}%");
+            });
+        }
+
+        if ($request->has('filtro')) {
+            switch ($request->input('filtro')) {
+                case 'pagas':
+                    $query->where('pago', true);
+                    break;
+                case 'nao_pagas':
+                    $query->where('pago', false);
+                    break;
+            }
+        }
+
+        $dadosFaturas = $query->paginate(12);
+
+        return view('fatura.index', ['dadosFaturas' => $dadosFaturas]);
     }
 
     public function show($id)
@@ -55,6 +86,27 @@ class FaturaController extends Controller
         $fatura->pago = $request->input('pago');
         $fatura->save();
 
-        return response()->json(['message' => 'Status de pagamento da fatura atualizado com sucesso', 'fatura' => $fatura]);
+        return redirect()->route('fatura.index')->with('success', 'Status de pagamento da fatura atualizado com sucesso.');
+    }
+
+    public function pesquisarFatura(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'search_cpf' => 'nullable|string',
+        ]);
+
+
+        $query = Fatura::with('venda.user')->orderBy('created_at', 'desc');
+
+
+        if ($request->has('search_cpf')) {
+            $query->whereHas('venda.user', function ($query) use ($request) {
+                $query->where('cpf', 'LIKE', "%{$request->input('search_cpf')}%");
+            });
+        }
+
+        $dadosFaturas = $query->paginate(12);
+
+        return view('fatura.index', ['dadosFaturas' => $dadosFaturas]);
     }
 }

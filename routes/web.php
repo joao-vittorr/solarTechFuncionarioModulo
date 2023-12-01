@@ -81,12 +81,13 @@ Route::post('/gerenciar-visitas', [VisitaTecnicaController::class, 'store'])->na
 Route::get('/usuarios-com-visitas', [VisitaTecnicaController::class, 'usuariosComVisitasTecnicas'])->name('index');
 
 
-// routes/web.php ou routes/api.php
+Route::get('/faturas-visualizar', [FaturaController::class, 'indexView'])->name('fatura.index');
 Route::get('/faturas', [FaturaController::class, 'index']);
 Route::get('/faturas/{id}', [FaturaController::class, 'show']);
 Route::put('/faturas/{id}', [FaturaController::class, 'update']);
-Route::put('/faturas/{id}/atualizar-pagamento', [FaturaController::class, 'atualizarPagamento']);
+Route::put('/faturas/{id}/atualizar-pagamento', [FaturaController::class, 'atualizarPagamento'])->name('atualizar-pagamento');
 Route::get('/cliente/faturas', [VendaController::class, 'faturasCliente']);
+Route::get('/faturas/pesquisar', [FaturaController::class, 'pesquisarFatura'])->name('fatura.pesquisar');
 
 
 
