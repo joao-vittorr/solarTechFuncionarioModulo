@@ -153,7 +153,7 @@ $('.visualizar-pdf').on('click', function () {
   `);
 
     $('#gerarPdfLink').on('click', function () {
-        window.location.href = '/fatura/pdf/' + vendaId + '/create'; // Substitua pela rota correta
+        window.location.href = '/fatura/pdf/' + vendaId + '/create'; 
     });
 
     $('#myModal').find('.modal-body').load(`pdf.index/${vendaId}`);
