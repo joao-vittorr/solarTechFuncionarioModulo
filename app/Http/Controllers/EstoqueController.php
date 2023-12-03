@@ -66,9 +66,29 @@ class EstoqueController extends Controller
 
     public function destroy($id)
     {
+        // Encontrar o estoque pelo ID
         $estoque = Estoque::find($id);
+    
+        // Verificar se o estoque foi encontrado
+        if (!$estoque) {
+            return redirect()->route('estoque.index')->with('error', 'Estoque não encontrado!');
+        }
+    
+        // Obter a quantidade do estoque que será removida
+        $quantidadeRemovida = $estoque->quantidade;
+    
+        // Excluir o estoque do banco de dados
         $estoque->delete();
-
+    
+        // Atualizar a quantidade de placas solares
+        $placasSolares = PlacaSolar::first();
+    
+        if ($placasSolares) {
+            // Garantir que a quantidade não se torne negativa
+            $placasSolares->quantidade = max(0, $placasSolares->quantidade - $quantidadeRemovida);
+            $placasSolares->save();
+        }
+    
         return redirect()->route('estoque.index')->with('success', 'Estoque excluído com sucesso!');
     }
 }
