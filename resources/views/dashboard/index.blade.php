@@ -202,7 +202,7 @@
             datasets: [{
                 label: 'Categorias',
                 data: categoriasMaisVendidas.map(item => item.total),
-                backgroundColor: 'rgba(0, 123, 255, 0.7)',
+                backgroundColor: ['rgba(0, 123, 255, 0.7)', 'rgba(255, 0, 0, 0.7)', 'rgba(0, 255, 0, 0.7)', 'rgba(0, 0, 255, 0.7)'],
                 barPercentage: 0.1,
                 borderWidth: 0.2
             }]
