@@ -5,7 +5,7 @@
         <div class="mt-4 d-flex justify-content-between align-items-center">
             <h1>Estoque</h1>
             <p>
-                <a href="{{ route('estoque.create') }}" class="btn btn-info">+ Estoque</a>
+                <a href="{{ route('estoque.create') }}" class="btn btn-info"><b>+ Estoque</b></a>
             </p>
         </div>
         @foreach ($estoques as $produto)

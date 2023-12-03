@@ -19,16 +19,21 @@
                     </div>
 
 
-                    <div class="mb-3 col-12">
-                        <label for="categoria">Categoria da Despesa</label>
+                    <div class="mb-2 col-6 d-flex align-items-center">
+                        <label for="categoria" class="mr-3">Categoria da Despesa</label>
+                    
                         <select name="categoria" id="categoria" class="form-control" required>
                             <option value="" selected>Selecione uma opção</option>
                             @foreach ($categorias as $categoria)
-                            <option value="{{ $categoria['id'] }}" {{ optional($despesa)->categoria_id === $categoria->id ? 'selected' : '' }}>
-                                {{ $categoria->nome }}
-                            </option>
+                                <option value="{{ $categoria['id'] }}" {{ optional($despesa)->categoria_id === $categoria->id ? 'selected' : '' }}>
+                                    {{ $categoria->nome }}
+                                </option>
                             @endforeach
                         </select>
+                    
+                        <a href="{{ route('categorias.create') }}" class="btn btn-primary ml-2">
+                            <b>+ Categoria</b>
+                        </a>
                     </div>
 
                     <div class="mb-3 col-6">
@@ -42,10 +47,10 @@
                     </div>
                 </div>
 
-                <a href="{{ route('categorias.create') }}" class="btn btn-primary">Criar Nova Categoria</a>
+                
                 <button type="submit" class="btn btn-primary">Salvar Despesa</button>
     
-                <a class='btn btn-secondary' href="{{ route('despesas.create') }}">
+                <a class='btn btn-secondary @if ($despesa == null) disabled @endif' href="{{ route('despesas.create') }}">
                     Cadastrar Nova Despesa
                 </a>
                 <a class='btn btn-secondary' href="{{ route('despesas.index') }}">
@@ -53,12 +58,5 @@
                 </a>
 
             </form>
-            <!-- @if ($despesa && $despesa->id) -->
-            <!-- <form method="POST" action="{{ route('despesas.destroy', ['id' => $despesa->id]) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Deletar</button>
-            </form>
-            @endif-->
             @endsection
         </div>

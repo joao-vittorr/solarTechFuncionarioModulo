@@ -26,7 +26,7 @@
 
             <p>
                 <a href="{{ route('despesas.create') }}" class="btn btn-info">
-                    + Despesas
+                   <b> + Despesas </b>
                 </a>
             </p>
         </div>

@@ -116,7 +116,7 @@
 								</td>
 
 								<td>
-									<b>Fatura #: {{ $invoice['id'] }}</b><br />
+									<b>Fatura #{{ $invoice['id'] }}</b><br />
 									Data:{{ date('d/m/Y', strtotime($invoice->created_at)) }}<br />
 								</td>
 							</tr>
@@ -153,7 +153,7 @@
 				</tr>
 
 				<tr class="details">
-					<td>Data</td>
+					<td>{{ date('d/m/Y', strtotime($invoice->created_at)) }}</td>
                     <td></td>
                     <td></td>
 					<td>1000</td>

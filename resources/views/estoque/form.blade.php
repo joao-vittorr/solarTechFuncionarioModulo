@@ -37,21 +37,14 @@
 
 
             <button type="submit" class="btn btn-primary">Salvar Estoque</button>
-
-            <a class='btn btn-secondary' href="{{ route('estoque.create') }}">
+          
+            <a class='btn btn-secondary @if ($produto == null) disabled @endif' href="{{ route('estoque.create') }}">
                 Cadastrar Novo Estoque
             </a>
             <a class='btn btn-secondary' href="{{ route('estoque.index') }}">
                 Voltar
             </a>
         </form>
-            <!-- @if ($produto && $produto->id)
-            <form method="POST" action="{{ route('estoque.destroy', ['id' => $produto->id]) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Deletar</button>
-            </form>
-            @endif -->
         </div>
 
 

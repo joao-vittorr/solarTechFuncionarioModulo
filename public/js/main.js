@@ -126,7 +126,7 @@ $('.visualizar-pdf').on('click', function () {
                                             </td>
                                             <td>
                                                 <p>
-                                                    <strong>${quantidadePlacas}</strong>
+                                                    <strong>R$ ${valorFinal}</strong>
                                                 </p>
                                                 <p>
                                                     <strong>R$ ${valorFinal}
