@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Venda;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Illuminate\Http\Request;
 
 class PDFController extends Controller
 {
@@ -35,19 +36,18 @@ class PDFController extends Controller
         $pdf->stream('fatura.pdf');
     }
 
-    public function gerarPDFapi($id){
-
+    public function gerarPDFapi(Request $request,$id){
         $invoice = Venda::find($id);
         $user = $invoice->user;
         $img = $this->dompdfImg('public/images/logoProjetoSolarTech.png');
         $data = date('d/m/Y', strtotime($invoice->created_at));
         $valorFinal = number_format($invoice->valorFinal, 2, ',', '.');
-
+        
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         $options->set('isPhpEnabled', true);
         $options->set('isRemoteEnable', true);
-
+        
         $pdf = new Dompdf($options);
 
         $html = "<!DOCTYPE html>
@@ -237,14 +237,16 @@ class PDFController extends Controller
         </body>
         
         </html>";
-
+        
         $pdf->loadHtml($html);
 
         $pdf->setPaper('A4', 'portrait');
 
         $pdf->render();
 
-        $pdf->stream('fatura.pdf');     
+        return response($pdf->output())
+        ->header('Content-Type', 'application/pdf')
+        ->header('Access-Control-Allow-Origin', 'http://localhost:8080'); // Substitua com a origem real do seu frontend
     }
 
     public function index($id)
