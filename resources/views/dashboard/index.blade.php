@@ -83,8 +83,8 @@
                                     <td>
                                         {{ $produto->descricao }}
                                     </td>
-                                    <td>${{ $produto->valor }}</td>
-                                    <td>{{ $produto->data_compra}}</td>
+                                    <td>R${{ $produto->valor }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($produto->data_compra)) }}</td>
                                     <td>{{ $produto->quantidade }}</td>
                                 </tr>
                                 @endforeach
