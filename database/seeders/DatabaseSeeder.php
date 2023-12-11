@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             PacotesSeeder::class,
             //VendasSeeder::class,
-            VisitaTecnicaSeeder::class,
             CategoriasSeeder::class,
             DespesasSeeder::class,
         ]);
