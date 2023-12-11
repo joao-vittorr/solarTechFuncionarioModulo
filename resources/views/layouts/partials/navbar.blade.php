@@ -38,7 +38,6 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="{{ route('venda.mostrar') }}">Produtos vendidos</a></li>
-              <li><a class="dropdown-item" href="{{ route('index') }}">Visitas Técnicas</a></li>
               <li><a class="dropdown-item" href="{{ route('fatura.index') }}">Faturas geradas</a></li>
             </ul>
           </li>

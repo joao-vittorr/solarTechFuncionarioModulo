@@ -83,13 +83,36 @@
                                     <td>
                                         {{ $produto->descricao }}
                                     </td>
-                                    <td>R${{ $produto->valor }}</td>
+                                    <td>R${{ number_format($produto->valor, 2, ',', '.') }}</td>
                                     <td>{{ date('d/m/Y', strtotime($produto->data_compra)) }}</td>
                                     <td>{{ $produto->quantidade }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <br/>
+                <div class="card">
+                    <div class="card-header border-0">
+                        <h3 class="card-title">Placas Solares disponíveis</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Tabela de quantidade total de placas solares -->
+                        <div class="position-relative mb-4">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Quantidade Total:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ $quantidadeTotalPlacas }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

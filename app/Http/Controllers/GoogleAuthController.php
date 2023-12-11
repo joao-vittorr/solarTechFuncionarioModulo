@@ -40,7 +40,13 @@ class GoogleAuthController extends Controller
             Auth::login($newUser);
         }
 
-        return redirect('/');
+        if (Auth::user()->access_level === 'cliente') {
+            return redirect('/');
+        } elseif (Auth::user()->access_level === 'admin' || Auth::user()->access_level === 'funcionario') {
+            return redirect('/dashboard');
+        }
+
+        
     }
 }
 

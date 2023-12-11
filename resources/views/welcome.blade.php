@@ -17,34 +17,34 @@
 </head>
 
 <body class="antialiased">
-    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+    <div
+        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         <img src="{{ asset('images/solartech_background.png') }}" class="background_solar" />
         @if (Route::has('auth.google'))
-        <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-            @auth
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                    Logout
-                </button>
-            </form>
-            @can('admin-funcionario')
-            <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-            @endcan
-            @else
-            <a href="{{ route('auth.google') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" style="display: block; padding: 10px;">Login com o Google</a>
-            @endauth
-        </div>
+            <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
+                @auth
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-log">
+                            Logout
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('auth.google') }}" class="btn btn-log">LOGIN</a>
+                @endauth
+            </div>
         @endif
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex justify-center">
-                <img src="{{ asset('images/logoProjetoSolarTechSemTexto.svg') }}" alt="logo_svg" class="h-17 w-auto bg-gray-100 dark:bg-gray-900">
+                <img src="{{ asset('images/logoProjetoSolarTechSemTexto.svg') }}" alt="logo_svg"
+                    class="h-17 w-auto bg-gray-100 dark:bg-gray-900">
             </div>
 
             <div class="mt-16">
                 <div class="grid grid-cols-1 gap-6 lg:gap-8">
-                    <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                    <div
+                        class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                         <div>
                             <h1 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Bem-vindo ao SolarTech!
                             </h1>
@@ -65,7 +65,15 @@
                     </div>
                 </div>
             </div>
+            @if (Session::has('error'))
+                <br />
+                <div class="bg-red text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Erro!</strong>
+                    <span class="block sm:inline">{{ Session::get('error') }}</span>
+                </div>
+            @endif
         </div>
+
     </div>
 </body>
 

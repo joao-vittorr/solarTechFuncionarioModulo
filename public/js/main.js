@@ -56,13 +56,15 @@ $('.visualizar-pdf').on('click', function () {
     var nomePacote = $(this).data('nome-pacote');
     var quantidadePlacas = $(this).data('quantidade-placas');
     var valorFinal = $(this).data('valor-final');
-    var dataCompra = $(this).data('compra-data')
+    var dataCompra = $(this).data('compra-data');
+
 
     // Preencher os elementos HTML do modal com os dados
     $('#myModal').html(`
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header justify-content-end">
+            
             <button type="button" class="close btn btn-danger " data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
             </button>

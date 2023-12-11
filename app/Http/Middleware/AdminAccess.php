@@ -3,8 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Session;
 
 class AdminAccess
 {
@@ -14,8 +13,11 @@ class AdminAccess
 
         if ($user && in_array($user->access_level, ['admin', 'funcionario'])) {
             return $next($request);
+        } else {
+            // Armazenar mensagem de erro na sessão
+            Session::flash('error', 'Acesso negado. Você não tem permissão para acessar esta página.');
+            // Redirecionar de volta para a página anterior
+            return redirect()->back();
         }
-
-        return redirect()->route('home')->with('error', 'Acesso negado. Você não tem permissão para acessar esta página.');
     }
 }

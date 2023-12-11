@@ -1,21 +1,24 @@
-.conf-body{
+.conf-body {
     display: grid;
     flex-direction: column;
     position: relative;
     padding-bottom: 25px;
 }
-.logout{
+
+.logout {
     color: grey;
     border: none;
-    background:none;
+    background: none;
 }
-.background_solar{
+
+.background_solar {
     position: absolute;
     opacity: 0.05;
     background-repeat: repeat-y;
     max-width: 90%;
     max-height: 90%;
 }
+
 footer {
     color: white;
     text-align: center;
@@ -29,11 +32,82 @@ footer {
     align-items: center;
     gap: 0.2rem;
 }
+
 .custom-pagination .page-link {
-    font-size: 14px; /* Ajuste o tamanho conforme desejado */
+    font-size: 14px;
+    /* Ajuste o tamanho conforme desejado */
 }
-.bg-color-padrao{
+
+.bg-color-padrao {
     background-color: #111827 !important;
     opacity: 1;
     color: white !important;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-log {
+    color: #fff;
+    background-color:gray;
+    border-color: gray;
+}
+
+.btn-log:hover {
+    color: rgb(255, 255, 255);
+    background-color: #111827;
+    border-color: #111827;
+    box-shadow: 0px 0px 20px rgb(255, 255, 255);
+}
+
+.btn-check:focus+.btn-log,
+.btn-log:focus {
+    color: gray;
+    background-color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 0 0 0.25rem rgba(206, 206, 206, 0.5);
+}
+
+.btn-check:checked+.btn-log,
+.btn-check:active+.btn-log,
+.btn-log:active,
+.btn-log.active,
+.show>.btn-log.dropdown-toggle {
+    color: #fff;
+    background-color: gray;
+    border-color: gray;
+}
+
+.btn-check:checked+.btn-log:focus,
+.btn-check:active+.btn-log:focus,
+.btn-log:active:focus,
+.btn-log.active:focus,
+.show>.btn-log.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.25rem rgba(151, 152, 153, 0.5);
+}
+
+.bg-red{
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #e53e3e; 
+    background-color: #fed7d7;
+    color: #e53e3e;
+    border-radius: 0.25rem;
 }
