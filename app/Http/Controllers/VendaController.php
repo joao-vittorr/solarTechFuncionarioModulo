@@ -110,12 +110,6 @@ class VendaController extends Controller
         }
     }
 
-    public function obterTotal()
-    {
-        $totalVendas = Venda::sum('valorFinal');
-        return response()->json(["totalVendas" => $totalVendas]);
-    }
-
     public function comprasCliente(Request $request,$id): JsonResponse
     {
         $dadosVendas = Venda::where('users_id',$id)->get();

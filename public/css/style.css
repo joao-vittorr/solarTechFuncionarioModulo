@@ -111,3 +111,14 @@ footer {
     color: #e53e3e;
     border-radius: 0.25rem;
 }
+
+.display-7 {
+    font-size: calc(1.175rem + 1.2vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  @media (min-width: 1200px) {
+    .display-7 {
+      font-size: 1.55rem;
+    }
+  }

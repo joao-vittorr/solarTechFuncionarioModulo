@@ -42,12 +42,21 @@
         <div class="col-md-6 themed-grid-col">
             <div class="row">
                 <div class="p-1 col-md-6 themed-grid-col">
-                    <strong>Status de Pagamento: </strong>{{ $fatura->pago ? 'Pago' : 'Não Pago' }}
+                    <p><strong>Status de Pagamento: </strong>{{ $fatura->pago ? 'Pago' : 'Não Pago' }}</p>
+                    <p></p><strong>Data de Criação: </strong>{{ date('d/m/Y', strtotime($fatura->created_at)) }}</p>
                 </div>
                 <div class="p-1 col-md-6 themed-grid-col">
-                    <strong>Data de Criação: </strong>{{ date('d/m/Y', strtotime($fatura->created_at)) }}
-                </div>
-                <div class="p-1 col-md-12 themed-grid-col">
+                    <p><a href="#" class="card-link btn btn-primary visualizar-pdf w-100" data-toggle="modal" data-target="#myModal" 
+                    data-status= "{{ $fatura->pago == 1 ? 'Pagamento Efetuado': 'Pagamento Não Efetuado' }}"data-id="{{ $fatura->id }}" data-nome="{{ $fatura->venda->user->name }}" 
+                    data-cpf="{{ $fatura->venda->user->cpf }}" data-logradouro="{{ $fatura->venda->user->logradouro }}" 
+                    data-numero-casa="{{ $fatura->venda->user->numero_casa }}" data-bairro="{{ $fatura->venda->user->bairro }}" 
+                    data-cidade="{{ $fatura->venda->user->cidade }}" data-estado="{{ $fatura->venda->user->estado }}" 
+                    data-email="{{ $fatura->venda->user->email }}" data-nome-pacote="{{ $fatura->venda->nomePacote }}" 
+                    data-quantidade-placas="{{ $fatura->venda->quantidadePlacas }}" 
+                    data-valor-final="{{ number_format($fatura->venda->valorFinal, 2, ',', '.') }}" 
+                    data-compra-data="{{ date('d/m/Y', strtotime($fatura->venda->created_at)) }}">
+                        Visualizar PDF
+                    </a></p>
                     <!-- Formulário para atualizar o pagamento -->
                     <form method="POST" action="{{ route('atualizar-pagamento', ['id' => $fatura->id]) }}">
                         @csrf
@@ -64,6 +73,9 @@
                         <button type="submit" class="btn btn-primary">Atualizar Pagamento</button>
                     </form>
                 </div>
+                <div class="p-1 col-md-6 themed-grid-col">
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -75,6 +87,7 @@
     <div class="d-flex justify-content-center mt-4 pagination">
         {{ $dadosFaturas->links('components.pagination') }}
     </div>
+    <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 </div>
 @endsection
 

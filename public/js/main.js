@@ -1,14 +1,3 @@
-$(document).ready(function () {
-
-    $.get("/total-vendas", function (data) {
-
-        var totalVendas = data.totalVendas;
-
-        $(".vendas").text("Valor total das vendas: R$ " + totalVendas);
-    });
-});
-
-
 const csrfToken = document.querySelector('input[name="_token"]').value;
 
 const logoutLink = document.getElementById('logout-link');
@@ -44,7 +33,7 @@ logoutLink.addEventListener('click', (e) => {
 
 
 $('.visualizar-pdf').on('click', function () {
-    var vendaId = $(this).data('id');
+    var faturaID = $(this).data('id');
     var nome = $(this).data('nome');
     var cpf = $(this).data('cpf');
     var logradouro = $(this).data('logradouro');
@@ -57,14 +46,14 @@ $('.visualizar-pdf').on('click', function () {
     var quantidadePlacas = $(this).data('quantidade-placas');
     var valorFinal = $(this).data('valor-final');
     var dataCompra = $(this).data('compra-data');
-
+    var status = $(this).data('status');
 
     // Preencher os elementos HTML do modal com os dados
     $('#myModal').html(`
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
-        <div class="modal-header justify-content-end">
-            
+        <div class="modal-header justify-content-betwenn">
+            <strong>${status}</strong>
             <button type="button" class="close btn btn-danger " data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -80,7 +69,7 @@ $('.visualizar-pdf').on('click', function () {
                                 </div>
                                 <div class="col-md-8 text-end">
                                     <div>
-                                        <h2><b>Fatura </b>#${vendaId}</h2>
+                                        <h2><b>Fatura </b>#${faturaID}</h2>
                                     </div>
                                     <h4 style="color: #242424;"><strong>${nome}</strong></h4>
                                     <h5 style="color: #242424;"><strong>CPF: ${cpf}</strong></h5>
@@ -164,9 +153,9 @@ $('.visualizar-pdf').on('click', function () {
   `);
 
     $('#gerarPdfLink').on('click', function () {
-        window.location.href = '/fatura/pdf/' + vendaId + '/create'; 
+        window.location.href = '/fatura/pdf/' + faturaID + '/create'; 
     });
 
-    $('#myModal').find('.modal-body').load(`pdf.index/${vendaId}`);
+    $('#myModal').find('.modal-body').load(`pdf.index/${faturaID}`);
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fatura;
 use App\Models\Venda;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -14,6 +15,7 @@ class PDFController extends Controller
     {
         $invoice = Venda::find($id);
         $user = $invoice->user;
+        $fatura = Fatura::find($id);
         $img = $this->dompdfImg('public/images/logoProjetoSolarTech.png');
         
 
@@ -25,7 +27,7 @@ class PDFController extends Controller
 
         $pdf = new Dompdf($options);
 
-        $html = view('fatura.pdf', compact('invoice', 'user', 'img'));
+        $html = view('fatura.pdf', compact('invoice', 'user', 'img', 'fatura'));
 
         $pdf->loadHtml($html);
 

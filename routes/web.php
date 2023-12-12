@@ -37,7 +37,6 @@ Route::middleware(['admin.access'])->group(function () {
     
     Route::get('/vendas', [VendaController::class, 'vendas'])->name('venda.mostrar');
     Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('venda.deletar');
-    Route::get('/total-vendas', [VendaController::class, 'obterTotal']);
     
     Route::get('/fatura/pdf/{id}/create', [PDFController::class, 'generatePDF'])->name('gerarPDF');
     Route::get('/fatura/pdf/{id}', [PDFController::class, 'index'])->name('pdf.index');
@@ -49,8 +48,7 @@ Route::middleware(['admin.access'])->group(function () {
     Route::put('/despesas/{id}', [DespesasController::class, 'update'])->name('despesas.update');
     Route::post('/despesas', [DespesasController::class, 'store'])->name('despesas.store');
     Route::delete('/despesas/{id}', [DespesasController::class, 'destroy'])->name('despesas.destroy');
-    
-    
+        
     Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
     Route::get('/categorias/{categoria}', [CategoriasController::class, 'edit'])->name('categorias.edit');
     Route::get('/categorias', [CategoriasController::class, 'index'])->name('categorias.index');

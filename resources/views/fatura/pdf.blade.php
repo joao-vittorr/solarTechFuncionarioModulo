@@ -156,7 +156,7 @@
 					<td>{{ date('d/m/Y', strtotime($invoice->created_at)) }}</td>
                     <td></td>
                     <td></td>
-					<td>1000</td>
+					<td>{{ $fatura->pago ? 'Pago' : 'Não Pago' }}</td>
 				</tr>
 
 				<tr class="heading">
