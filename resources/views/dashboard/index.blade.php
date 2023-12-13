@@ -101,9 +101,9 @@
                             <div class="position-relative mb-4">
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar"
-                                        style="width: {{ 100 - $quantidadeTotalPlacas / 100 }}%;"
-                                        aria-valuenow="{{ 100 - $quantidadeTotalPlacas / 100 }}" aria-valuemin="0"
-                                        aria-valuemax="100">{{ 100 - $quantidadeTotalPlacas / 100 }}%</div>
+                                        style="width: {{ ($quantidadeTotalPlacas / $totalEstoque) * 100 }}%;"
+                                        aria-valuenow="{{ ($quantidadeTotalPlacas / $totalEstoque) * 100 }}" aria-valuemin="0"
+                                        aria-valuemax="100">{{ ($quantidadeTotalPlacas / $totalEstoque) * 100 }}%</div>
                                 </div>
                             </div>
                             <div class="position-relative mb-4">
@@ -112,10 +112,24 @@
                                         <tr>
                                             <th>Quantidade Total:</th>
                                         </tr>
+                                        
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>{{ $quantidadeTotalPlacas }}</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Quantidade Vendida:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $totalEstoque - $quantidadeTotalPlacas }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

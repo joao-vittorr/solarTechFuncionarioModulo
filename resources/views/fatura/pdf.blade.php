@@ -134,7 +134,7 @@
                                     {{ $invoice->user->email }}<br />
 								</td>
 								<td>
-									Rua {{ $invoice->user->logradouro }}<br />
+									{{ $invoice->user->logradouro }}<br />
 									{{ $invoice->user->numero_casa }}<br />
                                     {{ $invoice->user->bairro }}<br />
                                     {{ $invoice->user->cidade }}/{{ $invoice->user->estado }}<br />
@@ -156,7 +156,7 @@
 					<td>{{ date('d/m/Y', strtotime($invoice->created_at)) }}</td>
                     <td></td>
                     <td></td>
-					<td>{{ $fatura->pago ? 'Pago' : 'Não Pago' }}</td>
+					<td>{{ $fatura->pago ? 'Pagamento Efetuado' : 'Aguardando Pagamento' }}</td>
 				</tr>
 
 				<tr class="heading">

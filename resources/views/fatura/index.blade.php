@@ -47,7 +47,7 @@
                 </div>
                 <div class="p-1 col-md-6 themed-grid-col">
                     <p><a href="#" class="card-link btn btn-primary visualizar-pdf w-100" data-toggle="modal" data-target="#myModal" 
-                    data-status= "{{ $fatura->pago == 1 ? 'Pagamento Efetuado': 'Pagamento Não Efetuado' }}"data-id="{{ $fatura->id }}" data-nome="{{ $fatura->venda->user->name }}" 
+                    data-status= "{{ $fatura->pago == 1 ? 'Pagamento Efetuado': 'Aguardando Pagamento' }}"data-id="{{ $fatura->id }}" data-nome="{{ $fatura->venda->user->name }}" 
                     data-cpf="{{ $fatura->venda->user->cpf }}" data-logradouro="{{ $fatura->venda->user->logradouro }}" 
                     data-numero-casa="{{ $fatura->venda->user->numero_casa }}" data-bairro="{{ $fatura->venda->user->bairro }}" 
                     data-cidade="{{ $fatura->venda->user->cidade }}" data-estado="{{ $fatura->venda->user->estado }}" 

@@ -41,6 +41,7 @@ class PDFController extends Controller
     public function gerarPDFapi(Request $request,$id){
         $invoice = Venda::find($id);
         $user = $invoice->user;
+        $fatura = Fatura::find($id);
         $img = $this->dompdfImg('public/images/logoProjetoSolarTech.png');
         $data = date('d/m/Y', strtotime($invoice->created_at));
         $valorFinal = number_format($invoice->valorFinal, 2, ',', '.');
@@ -211,7 +212,7 @@ class PDFController extends Controller
                             <td> $data</td>
                             <td></td>
                             <td></td>
-                            <td>1000</td>
+                            <td>$fatura->pago == 1 ? 'Pago' : 'Aguardando Pagamento' </td>
                         </tr>
         
                         <tr class='heading'>

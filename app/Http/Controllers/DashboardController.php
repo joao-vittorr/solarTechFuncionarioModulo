@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
               // Buscar dados do banco
             $vendasData = Venda::all();
-    
+
             $quantidadeTotalPlacas = PlacaSolar::sum('quantidade');
     
             // Criar um array para armazenar a contagem de vendas por mês
@@ -44,7 +44,7 @@ class DashboardController extends Controller
             // Buscar os últimos produtos cadastrados no estoque
             // Obter os produtos mais recentes do estoque
             $produtosRecentes = Estoque::orderBy('data_compra', 'desc')->take(5)->get();
-    
+            $totalEstoque = Estoque::sum('quantidade');
             // Obter todos os meses disponíveis
             $mesesDisponiveis = array_keys($vendasPorMes);
     
@@ -58,7 +58,7 @@ class DashboardController extends Controller
             $lucro = $totalVendas - $totalDespesas;
     
             // Passe os dados para a view
-            return view('dashboard.index', compact('vendasPorMes', 'mesesDisponiveis', 'produtosRecentes', 'categoriasMaisVendidas', 'totalVendas', 'totalDespesas', 'lucro', 'quantidadeTotalPlacas'));
+            return view('dashboard.index', compact('vendasPorMes', 'mesesDisponiveis', 'produtosRecentes', 'totalEstoque', 'categoriasMaisVendidas', 'totalVendas', 'totalDespesas', 'lucro', 'quantidadeTotalPlacas'));
         
     }
 }
