@@ -18,8 +18,6 @@ class PDFController extends Controller
         $fatura = Fatura::find($id);
         $img = $this->dompdfImg('public/images/logoProjetoSolarTech.png');
         
-
-
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         $options->set('isPhpEnabled', true);
@@ -52,7 +50,7 @@ class PDFController extends Controller
         $options->set('isRemoteEnable', true);
         
         $pdf = new Dompdf($options);
-
+        $status = $fatura->pago == 1 ? 'Pago' : 'Aguardando Pagamento';
         $html = "<!DOCTYPE html>
         <html lang='pt-br'>
         
@@ -212,7 +210,7 @@ class PDFController extends Controller
                             <td> $data</td>
                             <td></td>
                             <td></td>
-                            <td>{{ $fatura->pago == 1 ? 'Pago' : 'Aguardando Pagamento' }}</td>
+                            <td>$status</td>
                         </tr>
         
                         <tr class='heading'>
