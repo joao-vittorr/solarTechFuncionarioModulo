@@ -190,7 +190,7 @@ class PDFController extends Controller
                                             $user->email<br />
                                         </td>
                                         <td>
-                                            Rua $user->logradouro <br />
+                                            $user->logradouro <br />
                                             $user->numero_casa <br />
                                             $user->bairro <br />
                                             $user->cidade / $user->estado<br />
@@ -212,7 +212,7 @@ class PDFController extends Controller
                             <td> $data</td>
                             <td></td>
                             <td></td>
-                            <td>$fatura->pago == 1 ? 'Pago' : 'Aguardando Pagamento' </td>
+                            <td>{{ $fatura->pago == 1 ? 'Pago' : 'Aguardando Pagamento' }}</td>
                         </tr>
         
                         <tr class='heading'>
