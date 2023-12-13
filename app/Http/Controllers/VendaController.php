@@ -103,10 +103,10 @@ class VendaController extends Controller
     
             DB::commit();
     
-            return redirect()->route('venda.mostrar')->with('success', 'Venda deletada com sucesso');
+            return response()->json(['success' => true, 'message' => 'Venda deletada com sucesso!']);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['success' => false, 'message' => 'Erro ao deletar a venda!', 'error' => $e->getMessage()], 500);
         }
     }
 
