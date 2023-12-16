@@ -29,7 +29,7 @@
         </form>
     </div>
 
-    @foreach ($despesas as $despesa)
+    @forelse($despesas as $despesa)
     <br />
     <div class="row mb-3 text-center border border-2 rounded">
         <div class="pb-1 col-md-6 themed-grid-col">
@@ -58,9 +58,12 @@
             </div>
         </div>
     </div>
-    @endforeach
     @empty
-    <p>Nenhuma Despesa cadastrada.</p>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="text-center">
+                <p>Nenhuma Despesa cadastrada!</p>
+        </div>
+    </div>
     @endforelse
     <!-- Pagination Links -->
     <div class="d-flex justify-content-center mt-4 pagination">
