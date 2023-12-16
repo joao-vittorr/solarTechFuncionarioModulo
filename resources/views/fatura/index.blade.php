@@ -42,7 +42,7 @@
         <div class="col-md-6 themed-grid-col">
             <div class="row">
                 <div class="p-1 col-md-6 themed-grid-col">
-                    <p><strong>Status de Pagamento: </strong>{{ $fatura->pago ? 'Pago' : 'Não Pago' }}</p>
+                    <p><strong>Status: </strong>{{ $fatura->pago ? 'Pago' : 'Não Pago' }}</p>
                     <p></p><strong>Data de Criação: </strong>{{ date('d/m/Y', strtotime($fatura->created_at)) }}</p>
                 </div>
                 <div class="p-1 col-md-6 themed-grid-col">
@@ -63,14 +63,14 @@
                         @method('PUT')
 
                         <div class="form-group">
-                            <label for="pago">Marcar como Pago:</label>
+                            <label for="pago">Status Pagamento:</label>
                             <select name="pago" class="form-control">
-                                <option value="1" {{ $fatura->pago ? 'selected' : '' }}>Sim</option>
-                                <option value="0" {{ $fatura->pago ? '' : 'selected' }}>Não</option>
+                                <option value="1" {{ $fatura->pago ? 'selected' : '' }}>Pago</option>
+                                <option value="0" {{ $fatura->pago ? '' : 'selected' }}>Aguardando Pagamento</option>
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Atualizar Pagamento</button>
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
                     </form>
                 </div>
                 <div class="p-1 col-md-6 themed-grid-col">

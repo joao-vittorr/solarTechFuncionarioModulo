@@ -101,9 +101,9 @@
                             <div class="position-relative mb-4">
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar"
-                                        style="width: {{ ($quantidadeTotalPlacas / $totalEstoque) * 100 }}%;"
-                                        aria-valuenow="{{ ($quantidadeTotalPlacas / $totalEstoque) * 100 }}" aria-valuemin="0"
-                                        aria-valuemax="100">{{ ($quantidadeTotalPlacas / $totalEstoque) * 100 }}%</div>
+                                        style="width: {{ $totalEstoque == 0 ? 0 : ($quantidadeTotalPlacas / $totalEstoque) * 100 }}%;"
+                                        aria-valuenow="{{ $totalEstoque == 0 ? 0 : ($quantidadeTotalPlacas / $totalEstoque) * 100 }}" aria-valuemin="0"
+                                        aria-valuemax="100">{{ $totalEstoque == 0 ? 0 : ($quantidadeTotalPlacas / $totalEstoque) * 100 }}%</div>
                                 </div>
                             </div>
                             <div class="position-relative mb-4">

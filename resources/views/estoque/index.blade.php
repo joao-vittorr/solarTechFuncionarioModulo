@@ -38,6 +38,9 @@
                 </div>
             </div>
         @endforeach
+        @empty
+        <p>Nenhum Estoque cadastrado.</p>
+        @endforelse
         <!-- Pagination Links -->
         <div class="d-flex justify-content-center mt-4 pagination">
             {{ $estoques->links('components.pagination') }}

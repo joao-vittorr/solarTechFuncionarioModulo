@@ -43,22 +43,18 @@
           </li>
           <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-            Aplicação em tela Cheia
+            Tela Cheia
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" role="button" id="logout-link">
-            Realizar logout
+            Logout
             @csrf
             <i class="fa-solid fa-right-from-bracket logout"></i>
           </a>
         </li>
         </ul>
-        <!-- <form class="d-flex mt-3" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-success" type="submit">Search</button>
-        </form> -->
       </div>
     </div>
   </div>

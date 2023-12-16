@@ -59,6 +59,9 @@
         </div>
     </div>
     @endforeach
+    @empty
+    <p>Nenhuma Despesa cadastrada.</p>
+    @endforelse
     <!-- Pagination Links -->
     <div class="d-flex justify-content-center mt-4 pagination">
         {{ $despesas->links('components.pagination') }}
