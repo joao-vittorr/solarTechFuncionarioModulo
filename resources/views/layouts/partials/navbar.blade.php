@@ -15,6 +15,7 @@
           <li class="nav-item">
             <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
           </li>
+          @can('admin')
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Gerenciar Funcionário
@@ -23,6 +24,7 @@
               <li><a class="dropdown-item" href="{{ route('gerenciar.funcionario') }}">Tabela de Funcionários</a></li>
             </ul>
           </li>
+          @endcan
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Financeiro
