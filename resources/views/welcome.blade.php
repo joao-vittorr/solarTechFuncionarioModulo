@@ -30,7 +30,7 @@
                         </button>
                     </form>
                 @else
-                    <a href="{{ route('auth.google') }}" class="btn btn-log">LOGIN</a>
+                    <a href="{{ route('auth.google') }}" class="btn btn-log" id="login">LOGIN</a>
                 @endauth
             </div>
         @endif

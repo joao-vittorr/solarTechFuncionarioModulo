@@ -30,6 +30,14 @@ class UsersTableSeeder extends Seeder
             'access_level' => 'admin',
             'cpf' => '2222222222',
         ]);
+        DB::table('users')->insert([
+            'name' => 'John',
+            'email' => 'comentadortt@gmail.com',
+            'cep' => '00000000',
+            'sub' => '114460432847193081813',
+            'access_level' => 'admin',
+            'cpf' => '33333333333',
+        ]);
         
     }
 }

@@ -6,7 +6,7 @@
     <div class="mt-4 d-flex justify-content-between">
         <h1>{{ __('Expenses') }}</h1>
         <p>
-            <a href="{{ route('despesas.create') }}" class="btn btn-info">
+        <a href="{{ route('despesas.create') }}" id="criarDespesa" class="btn btn-info">
                 <b> + Despesas </b>
             </a>
         </p>
@@ -33,7 +33,7 @@
     <br />
     <div class="row mb-3 text-center border border-2 rounded">
         <div class="pb-1 col-md-6 themed-grid-col">
-            <p><strong>Descrição: </strong>{{ $despesa->descricao }}</p>
+            <p id="desc_despesa"><strong>Descrição: </strong>{{ $despesa->descricao }}</p>
             <p><strong>Valor: </strong>R$ {{ number_format($despesa->valor, 2, ',', '.') }}</p>
         </div>
         <div class="col-md-6 themed-grid-col">

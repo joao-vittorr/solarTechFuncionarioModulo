@@ -37,12 +37,12 @@
 
                     <div class="mb-4 col-6">
                         <label for="data"> Data da Despesa:</label>
-                        <input type="date" name="data_despesa" id="data_despesa" class="form-control" value="{{ old('data_despesa', optional($despesa)->data_despesa) }}" required>
+                        <input type="date" name="data_despesa" id="data_despesa" class="form-control" value="{{ old('data_despesa', optional($despesa)->data_despesa ? date('Y-m-d', strtotime($despesa->data_despesa)) : '') }}" required>
                     </div>
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Salvar Despesa</button>
+                <button type="submit" class="btn btn-primary" id="salvarDespesa">Salvar Despesa</button>
                 <a href="{{ route('categorias.create') }}" class="btn btn-primary">
                     <b>+ Categoria</b>
                 </a>

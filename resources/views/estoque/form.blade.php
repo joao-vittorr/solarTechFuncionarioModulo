@@ -30,7 +30,7 @@
 
                 <div class="mb-3 col-6">
                     <label for="data"> Data da Compra</label>
-                    <input type="date" name="data_compra" id="data_compra" class="form-control" value="{{ old('data_compra', optional($produto)->data_compra) }}" required>
+                    <input type="date" name="data_compra" id="data_compra" class="form-control" value="{{ old('data_compra', optional($produto)->data_compra ? date('Y-m-d', strtotime($produto->data_compra)) : '') }}" required>
                 </div>
             </div>
 

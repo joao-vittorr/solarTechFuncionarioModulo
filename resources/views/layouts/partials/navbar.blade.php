@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-color-padrao fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ route('dashboard') }}"><img src="{{ asset('images/logoProjetoSolarTech.svg') }}" alt="Logo Projeto SolarTech" style="height: 40px;"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" id="menu" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="offcanvas offcanvas-end bg-color-padrao" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
@@ -26,11 +26,11 @@
           </li>
           @endcan
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="financeiro" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Financeiro
             </a>
             <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="{{ route('despesas.index') }}">Gerenciar Despesas</a></li>
+              <li><a class="dropdown-item" id="despesas" href="{{ route('despesas.index') }}">Gerenciar Despesas</a></li>
               <li><a class="dropdown-item" href="{{route('estoque.index')}}">Gerenciar Estoque</a></li>
             </ul>
           </li>
