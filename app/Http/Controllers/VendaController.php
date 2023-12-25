@@ -77,32 +77,32 @@ class VendaController extends Controller
     public function deletarVenda($id)
     {
         $venda = Venda::find($id);
-    
+
         if (!$venda) {
             return response()->json(['message' => 'Venda não encontrada'], 404);
         }
-    
+
         DB::beginTransaction();
-    
+
         try {
             $fatura = $venda->fatura;
-    
+
             $quantidadePlacas = $venda->quantidadePlacas;
-    
+
             $venda->delete();
-    
+
             if ($fatura) {
                 $fatura->delete();
             }
-    
+
             $placasDisponiveis = PlacaSolar::first();
             if ($placasDisponiveis) {
                 $placasDisponiveis->quantidade += $quantidadePlacas;
                 $placasDisponiveis->save();
             }
-    
+
             DB::commit();
-    
+
             return response()->json(['success' => true, 'message' => 'Venda deletada com sucesso!']);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -110,25 +110,54 @@ class VendaController extends Controller
         }
     }
 
-    public function comprasCliente(Request $request,$id): JsonResponse
+    public function deletarVendaCliente($id)
     {
-        $dadosVendas = Venda::where('users_id',$id)->get();
+        $venda = Venda::find($id);
+
+        if (!$venda) {
+            return response()->json(['message' => 'Venda não encontrada'], 404);
+        }
+
+        DB::beginTransaction();
+
+        $fatura = $venda->fatura;
+
+        $quantidadePlacas = $venda->quantidadePlacas;
+
+        $venda->delete();
+
+        if ($fatura) {
+            $fatura->delete();
+        }
+
+        $placasDisponiveis = PlacaSolar::first();
+        if ($placasDisponiveis) {
+            $placasDisponiveis->quantidade += $quantidadePlacas;
+            $placasDisponiveis->save();
+        }
+
+        DB::commit();
+
+        return redirect()->route('venda.mostrar')->with('success', 'Venda deletada com sucesso!');
+    }
+
+    public function comprasCliente(Request $request, $id): JsonResponse
+    {
+        $dadosVendas = Venda::where('users_id', $id)->get();
         return response()->json([$dadosVendas]);
     }
-    
+
     public function faturaPorId($venda_id)
     {
-        
+
         $venda = Venda::with('fatura')->find($venda_id);
-    
+
         if (!$venda) {
 
             return response()->json(['error' => 'Venda não encontrada.'], 404);
         }
-    
+
 
         return response()->json(['venda' => $venda]);
     }
-    
-    
 }

@@ -2,14 +2,21 @@
 
 @section('content')
 <div class="container">
-
-    <div class="mt-4 d-flex justify-content-between">
-        <h1>{{ __('Expenses') }}</h1>
-        <p>
-        <a href="{{ route('despesas.create') }}" id="criarDespesa" class="btn btn-info">
-                <b> + Despesas </b>
-            </a>
-        </p>
+    <div>
+        <div class="mt-4 d-flex justify-content-between">
+            <h1>{{ __('Expenses') }}</h1>
+            <p>
+            <a href="{{ route('despesas.create') }}" id="criarDespesa" class="btn btn-info">
+                    <b> + Despesas </b>
+                </a>
+            </p>
+        </div>
+        @if(session('success'))
+        <div id="resIdDespesa" class="bg-warning p-4">
+            {{ session('success') }}
+        </div>
+        @endif
+        <br/>
     </div>
     <div>
         <form method="GET" action="{{ route('despesas.index') }}">

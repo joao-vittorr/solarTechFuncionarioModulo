@@ -2,20 +2,27 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mt-4">Produtos vendidos</h1>
-    <p>
-    <form action="{{ route('venda.mostrar') }}" method="GET" class="row g-3">
-        <div class="col-4">
-            <input type="text" name="tipoPacote" placeholder="Tipo de Pacote" value="{{ $tipoPacote ?? '' }}" class="form-control">
+    <div>
+        <h1 class="mt-4">Produtos vendidos</h1>
+        <p>
+        <form action="{{ route('venda.mostrar') }}" method="GET" class="row g-3">
+            <div class="col-4">
+                <input type="text" name="tipoPacote" placeholder="Tipo de Pacote" value="{{ $tipoPacote ?? '' }}" class="form-control">
+            </div>
+            <div class="col-2">
+                <input type="text" name="cpfUsuario" placeholder="CPF do Usuário" value="{{ $cpfUsuario ?? '' }}" class="form-control">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+        </p>
+        @if(session('success'))
+        <div id="resIdVendas" class="bg-warning p-4">
+            {{ session('success') }}
         </div>
-        <div class="col-2">
-            <input type="text" name="cpfUsuario" placeholder="CPF do Usuário" value="{{ $cpfUsuario ?? '' }}" class="form-control">
-        </div>
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </div>
-    </form>
-    </p>
+        @endif
+    </div>
     @foreach ($dadosVendas as $venda)
     <br />
     <div class="row mb-3 text-center border border-2 rounded">
@@ -31,7 +38,7 @@
                 </div>
                 <div class="p-1 col-md-6 themed-grid-col">
                     <p><strong class="display-7">Valor Total: R$ {{ number_format($venda->valorFinal, 2, ',', '.') }}</strong><p>
-                    <form method="POST" action="{{ route('venda.deletar', ['id' => $venda->id]) }}">
+                    <form method="POST" action="{{ route('venda.deletar.cliente', ['id' => $venda->id]) }}">
                         @csrf
                         @method('DELETE')
                         <p><button type="submit" class="btn btn-danger w-100">Deletar</button></p>

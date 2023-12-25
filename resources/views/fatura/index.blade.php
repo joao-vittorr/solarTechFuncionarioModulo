@@ -2,14 +2,25 @@
 
 @section('content')
 <div class="container">
-
-    <div class="mt-4 d-flex justify-content-between align-items-center">
-        <h1>Faturas Existentes</h1>
-        <div class="mb-4">
-            <a href="{{ route('fatura.index', ['filtro' => 'todas']) }}" class="btn btn-primary">Todas as Faturas</a>
-            <a href="{{ route('fatura.index', ['filtro' => 'pagas']) }}" class="btn btn-success">Faturas Pagas</a>
-            <a href="{{ route('fatura.index', ['filtro' => 'nao_pagas']) }}" class="btn btn-danger">Faturas Não Pagas</a>
+    <div>
+        <div class="mt-4 d-flex justify-content-between align-items-center">
+            <h1>Faturas Existentes</h1>
+            <div class="mb-4">
+                <a href="{{ route('fatura.index', ['filtro' => 'todas']) }}" class="btn btn-primary">Todas as Faturas</a>
+                <a href="{{ route('fatura.index', ['filtro' => 'pagas']) }}" class="btn btn-success">Faturas Pagas</a>
+                <a href="{{ route('fatura.index', ['filtro' => 'nao_pagas']) }}" class="btn btn-danger">Faturas Não Pagas</a>
+            </div>
         </div>
+        @if(session('success'))
+        <div id="resIdFatura" class="bg-warning p-4">
+            {{ session('success') }}
+        </div>
+        @endif
+        @if(session('message'))
+        <div id="resIdFatura" class="bg-warning p-4">
+            {{ session('message') }}
+        </div>
+        @endif
     </div>
     <p>
     <form method="GET" action="{{ route('fatura.index') }}" class="mb-4">

@@ -153,9 +153,38 @@ $('.visualizar-pdf').on('click', function () {
   `);
 
     $('#gerarPdfLink').on('click', function () {
-        window.location.href = '/fatura/pdf/' + faturaID + '/create'; 
+        window.location.href = '/fatura/pdf/' + faturaID + '/create';
     });
 
     $('#myModal').find('.modal-body').load(`pdf.index/${faturaID}`);
 });
 
+const TimeSlow = 10000;
+
+$(document).ready(function () {
+    // Esconde a mensagem após 5 segundos (5000 milissegundos)
+    setTimeout(function () {
+        $("#resIdEstoque").fadeOut("slow");
+    }, TimeSlow);
+});
+
+$(document).ready(function () {
+    // Esconde a mensagem após 5 segundos (5000 milissegundos)
+    setTimeout(function () {
+        $("#resIdDespesa").fadeOut("slow");
+    }, TimeSlow);
+});
+
+$(document).ready(function () {
+    // Esconde a mensagem após 5 segundos (5000 milissegundos)
+    setTimeout(function () {
+        $("#resIdFatura").fadeOut("slow");
+    }, TimeSlow);
+});
+
+$(document).ready(function () {
+    // Esconde a mensagem após 5 segundos (5000 milissegundos)
+    setTimeout(function () {
+        $("#resIdVendas").fadeOut("slow");
+    }, TimeSlow);
+});

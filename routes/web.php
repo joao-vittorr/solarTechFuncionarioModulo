@@ -36,7 +36,7 @@ Route::middleware(['admin.access'])->group(function () {
     Route::get('/dashboard', [DashboardController::class,"index"])->name('dashboard');
     
     Route::get('/vendas', [VendaController::class, 'vendas'])->name('venda.mostrar');
-    Route::delete('/vendas/{id}', [VendaController::class, 'deletarVenda'])->name('venda.deletar');
+    Route::delete('/vendas/{id}', [VendaController::class, 'deletarVendaCliente'])->name('venda.deletar.cliente');
     
     Route::get('/fatura/pdf/{id}/create', [PDFController::class, 'generatePDF'])->name('gerarPDF');
     Route::get('/fatura/pdf/{id}', [PDFController::class, 'index'])->name('pdf.index');
