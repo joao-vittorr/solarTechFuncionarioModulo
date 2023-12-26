@@ -28,6 +28,25 @@ class DespesasController extends Controller
         return view('despesas.index', compact('despesas', 'categorias', 'categoriaSelecionada'));
         
     }   
+
+    public function indextest(Request $request)
+    {
+    
+        $query = Despesas::query();
+        $categorias = Categorias::all();
+        $categoriaSelecionada = $request->input('categoria');
+        
+        // Ajuste aqui: remova a atribuição a $despesas antes de definir as condições no $query
+        $query->when($categoriaSelecionada, function ($query) use ($categoriaSelecionada) {
+            $query->where('categoria_id', $categoriaSelecionada);
+        });
+        
+        // Ajuste aqui: use $query->paginate() em vez de $query->get()
+        $despesas = $query->with('categoria')->orderBy('data_despesa', 'desc')->paginate(12);
+        
+        return view('test.index', compact('despesas', 'categorias', 'categoriaSelecionada'));
+        
+    }  
     
     public function store(Request $request)
     {

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VendaController;
+use App\Http\Controllers\DespesasController;
 use App\Http\Controllers\PDFController;
 
 
@@ -27,3 +28,4 @@ Route::get('/cliente/faturas/{id}', [VendaController::class, 'faturaPorId']);
 Route::delete('/compras-cliente/{id}', [VendaController::class, 'deletarVenda']);
 Route::get('/pdf/{id}', [PDFController::class, 'gerarPDFapi']);
 
+Route::get('/despesasTest', [DespesasController::class, 'indextest'])->name('test.index');
