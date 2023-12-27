@@ -28,4 +28,4 @@ Route::get('/cliente/faturas/{id}', [VendaController::class, 'faturaPorId']);
 Route::delete('/compras-cliente/{id}', [VendaController::class, 'deletarVenda']);
 Route::get('/pdf/{id}', [PDFController::class, 'gerarPDFapi']);
 
-Route::get('/despesasTest', [DespesasController::class, 'indextest'])->name('test.index');
+Route::get('/despesasTest', [DespesasController::class, 'indextest']);
